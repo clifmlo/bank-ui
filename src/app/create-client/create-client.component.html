@@ -1,0 +1,41 @@
+<h3>Create Client</h3>
+<div [hidden]="submitted" style="width: 400px;">
+    <form (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" required [(ngModel)]="client.name" name="name">
+        </div>
+
+        <div class="form-group">
+            <label for="surname">Surname</label>
+            <input type="text" class="form-control" id="surname" required [(ngModel)]="client.surname" name="surname">
+        </div>
+
+        <div class="form-group">
+            <label for="idNumber">ID Number</label>
+            <input type="text" class="form-control" id="idNumber" required [(ngModel)]="client.idNumber" name="idNumber">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="text" class="form-control" id="email" required [(ngModel)]="client.email" name="email">
+        </div>
+        <div class="form-group">
+            <label for="contactNumber">Contact Number</label>
+            <input type="text" class="form-control" id="contactNumber" required [(ngModel)]="client.contactNumber" name="contactNumber">
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="text" class="form-control" id="password" required [(ngModel)]="client.password" name="password">
+        </div>
+        <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <input type="text" class="form-control" id="confirmPassword" required [(ngModel)]="client.confirmPassword" name="confirmPassword">
+        </div>
+
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>
+
+<div [hidden]="!submitted">
+    <h4>You submitted successfully!</h4>
+</div>

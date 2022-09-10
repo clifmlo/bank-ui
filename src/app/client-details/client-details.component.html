@@ -1,0 +1,56 @@
+<h2>Client Details</h2> 
+
+<hr/>
+<div *ngIf="client">
+   <div>
+        <label>Name: </label> {{client.name}}
+    </div>
+    <div>
+        <label>Surname: </label> {{client.surname}}
+    </div>
+    <div>
+        <label>ID Number: </label> {{client.idNumber}}
+    </div>
+   <div>
+        <label>Contact Number: </label> {{client.contactNumber}}
+    </div>
+    <div>
+        <label>Email: </label> {{client.email}}
+    </div>
+    <br>   
+    
+    <div class="panel panel-default">
+    <div class="panel-heading row">
+        <h5>Bank Accounts</h5>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Account Number</th>
+                    <th>Account Type</th>                   
+                    <th>Status</th>
+                    <th>Available Balance</th>
+                    <th>Latest Balance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let account of accounts">
+                    <td>{{account.accountNumber}}</td>
+                    <td>{{account.accountType}}</td>                                                         
+                    <td>{{account.status}}</td>
+                    <td>{{account.availableBalance}}</td>                                                         
+                    <td>{{account.latestBalance}}</td>                                                       
+                    <td>                        
+                        <button class="btn btn-info" style="margin-left: 10px">Deposit</button>
+                    </td>                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
+
+<br>
+<br>
+<button (click)="list()" class="btn btn-primary">Back</button><br>
