@@ -1,0 +1,22 @@
+<h3>Make a Deposit</h3>
+<div [hidden]="submitted" style="width: 400px;">
+    <form (ngSubmit)="onSubmit()">
+        <h5>Account Number: {{account}}</h5>
+
+        <div class="form-group">
+            <label for="amount">Amount</label>
+            <input type="number" class="form-control" id="number" required [(ngModel)]="deposit.amount" name="amount">
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="reference">Reference</label>
+            <input type="text" class="form-control" id="reference" required [(ngModel)]="deposit.reference" name="reference">
+        </div> 
+        <br>
+        <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+</div>
+
+<!--<div [hidden]="!submitted">
+    <h4>You submitted successfully!</h4>
+</div>-->

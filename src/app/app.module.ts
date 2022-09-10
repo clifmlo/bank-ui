@@ -15,6 +15,7 @@ import { CreateClientComponent } from './create-client/create-client.component';
 import { ClientDetailsComponent } from './client-details/client-details.component';
 import { ClientListComponent } from './client-list/client-list.component';
 import { CreateBankAccountComponent } from './create-bank-account/create-bank-account.component';
+import { DepositComponent } from './deposit/deposit.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { CreateBankAccountComponent } from './create-bank-account/create-bank-ac
     CreateClientComponent,
     ClientDetailsComponent,
     ClientListComponent,
-    CreateBankAccountComponent
+    CreateBankAccountComponent,
+    DepositComponent
   ],
   imports: [
     BrowserModule,

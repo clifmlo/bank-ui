@@ -1,3 +1,11 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <ul class="navbar-nav">           
+        <li class="nav-item" style="margin-left: 10px;">
+            <button (click)="newBankAccount()" class="btn btn-primary">New Bank Account</button>
+        </li>
+    </ul>
+
+</nav>
 <h2>Client Details</h2> 
 
 <hr/>
@@ -42,7 +50,7 @@
                     <td>{{account.availableBalance}}</td>                                                         
                     <td>{{account.latestBalance}}</td>                                                       
                     <td>                        
-                        <button class="btn btn-info" style="margin-left: 10px">Deposit</button>
+                        <button (click)="deposit(account.accountNumber)" class="btn btn-info" style="margin-left: 10px">Deposit</button>
                     </td>                    
                 </tr>
             </tbody>

@@ -6,6 +6,7 @@ import { ClientDetailsComponent } from './client-details/client-details.componen
 import { CreateClientComponent } from './create-client/create-client.component';
 import { ClientListComponent } from './client-list/client-list.component';
 import { CreateBankAccountComponent } from './create-bank-account/create-bank-account.component';
+import { DepositComponent } from './deposit/deposit.component';
 
 const routes: Routes = [
   {path: 'auth', component: AuthComponent},
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'clients', component: ClientListComponent },
   { path: 'add', component: CreateClientComponent },
   { path: 'details/:id', component: ClientDetailsComponent },
-  { path: 'new-account/:id', component: CreateBankAccountComponent },
+  { path: 'new-bank-account/:id', component: CreateBankAccountComponent },
+  { path: 'deposit/:account', component: DepositComponent },
 ];
 
 @NgModule({

@@ -28,8 +28,17 @@ export class ClientDetailsComponent implements OnInit {
   }
 
 
-list(){
-    this.router.navigate(['clients']);
-  }
+    list(){
+        this.router.navigate(['clients']);
+    }
+
+
+    newBankAccount(){
+      this.router.navigate(['new-bank-account/', this.id]);
+    }
+    
+    deposit(accountNumber: string){
+       this.router.navigate(['deposit/', accountNumber]);
+    }
   
 }
