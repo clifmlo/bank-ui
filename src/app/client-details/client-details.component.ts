@@ -16,7 +16,7 @@ export class ClientDetailsComponent implements OnInit {
 
   constructor(private clientService: ClientService, private route: ActivatedRoute, private router: Router) { }
 
-  ngOnInit() {
+    ngOnInit() {
     this.client = new Client();
     this.id = this.route.snapshot.params['id'];    
     this.clientService.getClient(this.id)
@@ -25,13 +25,11 @@ export class ClientDetailsComponent implements OnInit {
         this.client = data;
         this.accounts = data.bankAccounts;
       }, error => console.log(error));
-  }
-
+    }
 
     list(){
         this.router.navigate(['clients']);
     }
-
 
     newBankAccount(){
       this.router.navigate(['new-bank-account/', this.id]);

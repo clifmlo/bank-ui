@@ -17,14 +17,18 @@ export class AccountsComponent implements OnInit {
     private router: Router) {}
 
   ngOnInit() {
-    this.loadData();
-  }
-
-  loadData() {
     this.accounts = this.accountService.getAccountsList(this.authUserId);
   }
   
   accountDetails(accountNumber: string){
     this.router.navigate(['account-details', accountNumber]);
+  }
+  
+  transferOther() {
+    this.router.navigate(['transfer/other']);
+  }
+  
+  transferOwn() {
+    this.router.navigate(['transfer/own']);
   }
 }

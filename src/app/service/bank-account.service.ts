@@ -16,6 +16,10 @@ export class BankAccountService {
   }
   
   getAccountsList (userId: number) : Observable<any> {    
-    return this.http.post(`${this.baseUrl}bank-account/`, userId); 
+    return this.http.get(`${this.baseUrl}bank-account/user/${userId}`);     
+  }
+  
+  getAccountDetails(accountNumber: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}bank-account/${accountNumber}`); 
   }
 }

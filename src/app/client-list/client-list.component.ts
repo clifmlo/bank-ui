@@ -33,7 +33,7 @@ export class ClientListComponent implements OnInit {
         error => console.log(error));
   }
   
-   clientDetails(id: number){
+  clientDetails(id: number){
     this.router.navigate(['details', id]);
   }
 }

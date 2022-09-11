@@ -17,6 +17,9 @@ import { ClientListComponent } from './client-list/client-list.component';
 import { CreateBankAccountComponent } from './create-bank-account/create-bank-account.component';
 import { DepositComponent } from './deposit/deposit.component';
 import { AccountsComponent } from './accounts/accounts.component';
+import { AccountDetailsComponent } from './account-details/account-details.component';
+import { TransfersComponent } from './transfers/transfers.component';
+import { ExternalTransfersComponent } from './external-transfers/external-transfers.component';
 
 
 @NgModule({
@@ -31,7 +34,10 @@ import { AccountsComponent } from './accounts/accounts.component';
     ClientListComponent,
     CreateBankAccountComponent,
     DepositComponent,
-    AccountsComponent
+    AccountsComponent,
+    AccountDetailsComponent,
+    TransfersComponent,
+    ExternalTransfersComponent
   ],
   imports: [
     BrowserModule,

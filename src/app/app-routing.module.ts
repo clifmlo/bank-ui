@@ -8,6 +8,9 @@ import { ClientListComponent } from './client-list/client-list.component';
 import { CreateBankAccountComponent } from './create-bank-account/create-bank-account.component';
 import { DepositComponent } from './deposit/deposit.component';
 import { AccountsComponent } from './accounts/accounts.component';
+import { AccountDetailsComponent } from './account-details/account-details.component';
+import { TransfersComponent } from './transfers/transfers.component';
+import { ExternalTransfersComponent } from './external-transfers/external-transfers.component';
 
 const routes: Routes = [
   {path: 'auth', component: AuthComponent},
@@ -21,6 +24,9 @@ const routes: Routes = [
   { path: 'new-bank-account/:id', component: CreateBankAccountComponent },
   { path: 'deposit/:account', component: DepositComponent },
   { path: 'accounts', component: AccountsComponent },
+  { path: 'account-details/:account', component: AccountDetailsComponent },
+  { path: 'transfer/own', component: TransfersComponent },
+  { path: 'transfer/other', component: ExternalTransfersComponent },
 ];
 
 @NgModule({
