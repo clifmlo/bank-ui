@@ -14,4 +14,8 @@ export class BankAccountService {
   createBankAccount(account: Object): Observable<Object> {
     return this.http.post(`${this.baseUrl}bank-account/create`, account);
   }
+  
+  getAccountsList (userId: number) : Observable<any> {    
+    return this.http.post(`${this.baseUrl}bank-account/`, userId); 
+  }
 }

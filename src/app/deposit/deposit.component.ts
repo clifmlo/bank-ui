@@ -20,6 +20,7 @@ export class DepositComponent implements OnInit {
   }
  
   onSubmit() {
+     this.submitted = true;
      this.deposit.accountNumber = this.account; 
      this.transactionService.deposit(this.deposit).subscribe(data => console.log(data), error => console.log(error));    
   }

@@ -1,0 +1,27 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h1>Accounts</h1>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>Account Number</th>
+                    <th>Available Balance</th>                   
+                    <th>Latest Balance</th>                   
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let account of accounts | async">
+                    <td>{{account.accountNumber}}</td>
+                    <td>{{account.availableBalance}}</td>                                                         
+                    <td>{{account.latestBalance}}</td>                                                         
+                    <td>     
+                        <button (click)="accountDetails(account.accountNumber)" class="btn btn-info" style="margin-left: 10px">Details</button>
+                    </td>                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
