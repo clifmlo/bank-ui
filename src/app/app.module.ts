@@ -19,7 +19,6 @@ import { DepositComponent } from './deposit/deposit.component';
 import { AccountsComponent } from './accounts/accounts.component';
 import { AccountDetailsComponent } from './account-details/account-details.component';
 import { TransfersComponent } from './transfers/transfers.component';
-import { ExternalTransfersComponent } from './external-transfers/external-transfers.component';
 
 
 @NgModule({
@@ -36,8 +35,7 @@ import { ExternalTransfersComponent } from './external-transfers/external-transf
     DepositComponent,
     AccountsComponent,
     AccountDetailsComponent,
-    TransfersComponent,
-    ExternalTransfersComponent
+    TransfersComponent
   ],
   imports: [
     BrowserModule,

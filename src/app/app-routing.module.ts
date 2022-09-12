@@ -10,7 +10,6 @@ import { DepositComponent } from './deposit/deposit.component';
 import { AccountsComponent } from './accounts/accounts.component';
 import { AccountDetailsComponent } from './account-details/account-details.component';
 import { TransfersComponent } from './transfers/transfers.component';
-import { ExternalTransfersComponent } from './external-transfers/external-transfers.component';
 
 const routes: Routes = [
   {path: 'auth', component: AuthComponent},
@@ -25,8 +24,7 @@ const routes: Routes = [
   { path: 'deposit/:account', component: DepositComponent },
   { path: 'accounts', component: AccountsComponent },
   { path: 'account-details/:account', component: AccountDetailsComponent },
-  { path: 'transfer/own', component: TransfersComponent },
-  { path: 'transfer/other', component: ExternalTransfersComponent },
+  { path: 'transfer/:type', component: TransfersComponent },
 ];
 
 @NgModule({

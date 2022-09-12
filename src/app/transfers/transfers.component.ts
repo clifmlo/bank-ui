@@ -1,9 +1,10 @@
 import { Observable } from "rxjs";
 import { BankAccountService } from "../service/bank-account.service";
+import { TransactionService } from "../service/transaction.service";
 import { Account } from "../model/account";
 import { Transfer } from "../model/transfer";
 import { Component, OnInit } from "@angular/core";
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-transfers',
@@ -11,18 +12,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./transfers.component.css']
 })
 export class TransfersComponent implements OnInit {
-   authUserId = 1; //TODO get from session
+   
+   transferType: string;
+   ownTransfere = false;
    accounts: Observable<Account[]>;
+   authUserId = 1; //TODO fetch from session
    submitted = false;
    transfer: Transfer = new Transfer();
    
-    constructor(private accountService: BankAccountService,
-    private router: Router) {}
+    constructor(private accountService: BankAccountService, private transactionService: TransactionService, private route: ActivatedRoute, private router: Router) {}
 
-    ngOnInit(): void {
-        this.accounts = this.accountService.getAccountsList(this.authUserId);
+    ngOnInit(){
+        this.transferType = this.route.snapshot.params['type']; 
+        this.accounts = this.accountService.getAccountsList(this.authUserId);        
     }
 
     onSubmit(){
+        console.log(this.transfer);
+        this.submitted = true;
+        this.transactionService.transfer(this.transfer).subscribe(data => console.log(data), error => console.log(error));    
     }
 }

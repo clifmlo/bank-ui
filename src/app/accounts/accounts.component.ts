@@ -25,7 +25,7 @@ export class AccountsComponent implements OnInit {
   }
   
   transferOther() {
-    this.router.navigate(['transfer/other']);
+    this.router.navigate(['transfer/external']);
   }
   
   transferOwn() {

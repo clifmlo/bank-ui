@@ -1,6 +1,6 @@
 export class Transfer {
-    fromAccount: string;
-    toAccount: string;
-    amount: number;
+    debitAccount: string;
+    creditAccount: string;
+    transactionAmount: number;
     reference: string;
 }
