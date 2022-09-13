@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../login/auth.service';
+import { LoginService } from '../service/login.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -10,17 +10,24 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class MenuComponent implements OnInit {
   welcomeMessage = 'Test';
   isLoggedIn = false;
+  loggedInName : string;
+  
   constructor(private route: ActivatedRoute,
     private router: Router,
-    private authenticationService: AuthService) { }
+    private loginService: LoginService) { }
 
   ngOnInit(): void {
-    this.isLoggedIn = this.authenticationService.isUserLoggedIn();
+    this.isLoggedIn = this.loginService.isUserLoggedIn();
     console.log('menu ->' + this.isLoggedIn);
+    this.loggedInName =  this.loginService.getLoggedInUser().name;
   }
 
   handleLogout() {
-    this.authenticationService.logout();
+    this.loginService.logout();
+  }
+  
+  home() {
+    this.loginService.redirectUser();
   }
 
 }

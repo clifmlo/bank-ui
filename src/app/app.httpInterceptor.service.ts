@@ -1,25 +1,23 @@
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuthService } from './login/auth.service';
+import { LoginService } from './service/login.service';
 
 @Injectable()
 export class HttpInterceptorService implements HttpInterceptor {
 
-    constructor(private authenticationService: AuthService) { }
+    constructor(private loginService: LoginService) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if (this.authenticationService.isUserLoggedIn() && req.url.indexOf('basicauth') === -1) {
+        if (this.loginService.isUserLoggedIn() && req.url.indexOf('basicauth') === -1) {
             console.log("request intercepted");
-            console.log(this.authenticationService.username);
-            console.log(this.authenticationService.password);
-            
-//            var s1 = window.btoa(this.authenticationService.username + ":" + this.authenticationService.password);
-            
+            console.log(this.loginService.username);
+            console.log(this.loginService.password);
+
             const authReq = req.clone({
                 headers: new HttpHeaders({
                     'Content-Type': 'application/json',
-                    'Authorization': 'Basic ' + window.btoa(this.authenticationService.username + ":" + this.authenticationService.password)
+                    'Authorization': 'Basic ' + window.btoa(this.loginService.username + ":" + this.loginService.password)
                 })
             });
             return next.handle(authReq);

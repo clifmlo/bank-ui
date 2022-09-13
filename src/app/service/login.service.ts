@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class LoginService {
   private baseUrl = 'http://localhost:8080/api/v1/';
   authenticatedUser: Object;
   USER = 'authenticated_user';
@@ -14,7 +15,7 @@ export class AuthService {
   public username: string;
   public password: string;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
 
   }
 
@@ -46,4 +47,16 @@ export class AuthService {
     if (user === null) return ''
     return user
   }
+  
+  
+    redirectUser() {
+        var role=  this.getLoggedInUser().roles[0].name;
+        if (role === "ADMIN") {
+            this.router.navigate(['/clients']);
+        } else if (role === "USER") {
+            this.router.navigate(['/accounts']);
+        } else {
+            this.router.navigate(['/login']);
+        }
+    }
 }
