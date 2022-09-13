@@ -25,11 +25,22 @@ export class LoginComponent implements OnInit {
   }
 
   handleLogin() {
-    this.authenticationService.authenticate(this.username, this.password).subscribe((result)=> {
+    this.authenticationService.authenticate(this.username, this.password).subscribe((user)=> {
+      this.authenticationService.registerSuccessfulLogin(user);
+      var role = this.authenticationService.getLoggedInUser().roles[0].name;
+      console.log(role);
       this.invalidLogin = false;
       this.loginSuccess = true;
       this.successMessage = 'Login Successful.';
-      this.router.navigate(['/home']);
+      
+      if (role === "ADMIN") {
+        this.router.navigate(['/clients']);
+      } else if (role === "USER") {
+        this.router.navigate(['/accounts']);
+      } else {
+        this.router.navigate(['/login']);
+      }
+      
     }, () => {
       this.invalidLogin = true;
       this.loginSuccess = false;

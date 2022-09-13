@@ -28,7 +28,6 @@ export class TransfersComponent implements OnInit {
     }
 
     onSubmit(){
-        console.log(this.transfer);
         this.submitted = true;
         this.transactionService.transfer(this.transfer).subscribe(data => console.log(data), error => console.log(error));    
     }
