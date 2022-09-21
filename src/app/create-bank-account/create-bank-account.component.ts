@@ -27,17 +27,17 @@ export class CreateBankAccountComponent implements OnInit {
     this.bankAccount = new CreateBankAccount();
   }
 
-  save() {
-      console.log(this.bankAccount);
-    this.bankAccountService.createBankAccount(this.bankAccount)
-      .subscribe(data => console.log(data), error => console.log(error));
-    this.bankAccount = new CreateBankAccount();
-  }
+    save() {      
+        this.bankAccountService.createBankAccount(this.bankAccount)
+        .subscribe(data => console.log(data), error => console.log(error));
+        this.bankAccount = new CreateBankAccount();
+    }
 
   onSubmit() {
     this.submitted = true;
     this.setValues();
     this.save();
+    this.router.navigate(['/client/details/' + this.id]);
   }
   
   setValues() {

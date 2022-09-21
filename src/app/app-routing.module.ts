@@ -12,13 +12,13 @@ import { TransfersComponent } from './transfers/transfers.component';
 import { MenuComponent } from './menu/menu.component';
 
 const routes: Routes = [
-  {path: 'login', component: LoginComponent},
-  {path: '', component: LoginComponent},
-  {path: 'logout', component: LoginComponent},
+  { path: 'login', component: LoginComponent},
+  { path: '', component: LoginComponent},
+  { path: 'logout', component: LoginComponent},
   { path: '', redirectTo: 'client', pathMatch: 'full' },
   { path: 'clients', component: ClientListComponent },
   { path: 'add', component: CreateClientComponent },
-  { path: 'details/:id', component: ClientDetailsComponent },
+  { path: 'client/details/:id', component: ClientDetailsComponent },
   { path: 'new-bank-account/:id', component: CreateBankAccountComponent },
   { path: 'deposit/:account', component: DepositComponent },
   { path: 'accounts', component: AccountsComponent },

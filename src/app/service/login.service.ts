@@ -23,7 +23,7 @@ export class LoginService {
     this.username = username;
     this.password = password;
   
-    return this.http.post(`${this.baseUrl}auth/signin`, null);
+    return this.http.post(`${this.baseUrl}auth/user/signin`, null);
   }
 
   registerSuccessfulLogin(authenticatedUser: Object) {

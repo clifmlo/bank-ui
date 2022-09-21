@@ -16,7 +16,7 @@ export class ClientService {
   }
 
   createClient(client: Object): Observable<Object> {
-    return this.http.post(`${this.baseUrl}auth/signup`, client);
+    return this.http.post(`${this.baseUrl}auth/admin/signup`, client);
   }
 
   updateClient(id: number, value: any): Observable<Object> {
@@ -24,7 +24,7 @@ export class ClientService {
   }
 
   deleteClient(id: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${id}`, { responseType: 'text' });
+    return this.http.delete(`${this.baseUrl}/client/delete/${id}`, { responseType: 'text' });
   }
 
   getClientsList(): Observable<any> {

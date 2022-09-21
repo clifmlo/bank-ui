@@ -1,29 +1,32 @@
-<h3>Create Client</h3>
-<div [hidden]="submitted" style="width: 400px;">
+<div [hidden]="submitted" style="width: 400px;" class="offset-3">
+    <h3>Create Client</h3>
     <form (ngSubmit)="onSubmit()">
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" class="form-control" id="name" required [(ngModel)]="client.name" name="name">
+        <div class="row">
+            <div class="form-group col">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" required [(ngModel)]="client.name" name="name">
+            </div>
+            <br>
+            <div class="form-group col">
+                <label for="surname">Surname</label>
+                <input type="text" class="form-control" id="surname" required [(ngModel)]="client.surname" name="surname">
+            </div>                      
+        </div> 
+        <br>  
+        <div class="row">
+            <div class="form-group col">
+                <label for="idNumber">ID Number</label>
+                <input type="text" class="form-control" id="idNumber" required [(ngModel)]="client.idNumber" name="idNumber">
+            </div>
+            <div class="form-group col">
+                <label for="contactNumber">Contact Number</label>
+                <input type="text" class="form-control" id="contactNumber" required [(ngModel)]="client.contactNumber" name="contactNumber">
+            </div>            
         </div>
         <br>
-        <div class="form-group">
-            <label for="surname">Surname</label>
-            <input type="text" class="form-control" id="surname" required [(ngModel)]="client.surname" name="surname">
-        </div>
-        <br>
-        <div class="form-group">
-            <label for="idNumber">ID Number</label>
-            <input type="text" class="form-control" id="idNumber" required [(ngModel)]="client.idNumber" name="idNumber">
-        </div>
-        <br>
-        <div class="form-group">
+        <div class="form-group col">
             <label for="email">Email</label>
             <input type="text" class="form-control" id="email" required [(ngModel)]="client.email" name="email">
-        </div>
-        <br>
-        <div class="form-group">
-            <label for="contactNumber">Contact Number</label>
-            <input type="text" class="form-control" id="contactNumber" required [(ngModel)]="client.contactNumber" name="contactNumber">
         </div>
         <br>
         <div class="form-group">
