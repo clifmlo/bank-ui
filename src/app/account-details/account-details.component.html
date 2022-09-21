@@ -29,24 +29,24 @@
             <tr>
                 <th>Date</th>
                 <th>Reference</th>                   
-                <th>Amount</th>
+                <th>Money In</th>
+                <th>Money Out</th>
                 <th>Status</th>
-                <th>Balance</th>
+                <th>Balance</th>               
             </tr>
         </thead>
         <tbody>
-            <!--<tr *ngFor="let account of accounts">-->
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                                                                    
-<!--                <td>                        
-                    <button  class="btn btn-info" style="margin-left: 10px">Back</button>
-                </td>                    -->
-            <!--</tr>-->
+            <tr *ngFor="let transaction of transactions">
+                <td>{{transaction.date_processed}}</td>
+                <td>{{transaction.reference}}</td>
+                <td *ngIf="transaction.transactionType === 'CREDIT'">{{transaction.creditEntry}}</td>
+                <td *ngIf="transaction.transactionType != 'CREDIT'"></td>
+                <td *ngIf="transaction.transactionType === 'DEBIT'">{{transaction.debitEntry}}</td>
+                <td *ngIf="transaction.transactionType != 'DEBIT'"></td>
+                <td>{{transaction.transactionStatus}}</td>
+                <td *ngIf="transaction.transactionType === 'CREDIT'">{{transaction.creditBalance}}</td>                               
+                <td *ngIf="transaction.transactionType === 'DEBIT'">{{transaction.debitBalance}}</td>                               
+            </tr>
         </tbody>
     </table>
 </div>

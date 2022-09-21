@@ -9,16 +9,19 @@ import { Transfer } from "../model/transfer";
 })
 export class TransactionService {
 
-  private baseUrl = 'http://localhost:8080/api/v1/';
+    private baseUrl = 'http://localhost:8080/api/v1/';
 
-  constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) { }
+
+    deposit(deposit: Deposit): Observable<Object> {
+      return this.http.post(`${this.baseUrl}transaction/deposit`, deposit);
+    }
+
+    transfer(transfer: Transfer): Observable<Object> {
+      return this.http.post(`${this.baseUrl}transaction/transfer`, transfer);
+    }
   
-  deposit(deposit: Deposit): Observable<Object> {
-    return this.http.post(`${this.baseUrl}transaction/deposit`, deposit);
-  }
-  
-  transfer(transfer: Transfer): Observable<Object> {
-      console.log("caledddddd");
-    return this.http.post(`${this.baseUrl}transaction/transfer`, transfer);
-  }
+    getAccountTransactions(accountNumber: string) {
+        return this.http.get(`${this.baseUrl}transaction/`+ accountNumber);
+    }
 }
