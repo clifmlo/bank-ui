@@ -24,13 +24,14 @@ export class ClientListComponent implements OnInit {
   }
 
   deleteClient(id: number) {
-    this.clientService.deleteClient(id)
-      .subscribe(
+    if(confirm("Are you sure to delete this user?")) {
+        this.clientService.deleteClient(id)
+        .subscribe(
         data => {
-          console.log(data);
-          this.reloadData();
+           window.location.reload();
         },
         error => console.log(error));
+    }
   }
   
   clientDetails(id: number){
