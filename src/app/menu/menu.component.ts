@@ -11,6 +11,7 @@ export class MenuComponent implements OnInit {
   welcomeMessage = 'Test';
   isLoggedIn = false;
   loggedInName : string;
+  loggedInRole: string;
   
   constructor(private route: ActivatedRoute,
     private router: Router,
@@ -20,6 +21,7 @@ export class MenuComponent implements OnInit {
     this.isLoggedIn = this.loginService.isUserLoggedIn();
     console.log('menu ->' + this.isLoggedIn);
     this.loggedInName =  this.loginService.getLoggedInUser().name;
+    this.loggedInRole =  this.loginService.getLoggedInUser().roles[0].name;
   }
 
   handleLogout() {

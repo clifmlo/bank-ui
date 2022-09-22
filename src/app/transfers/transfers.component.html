@@ -1,5 +1,5 @@
-<h3>Make a Transfer</h3>
-<div [hidden]="submitted" style="width: 400px;">
+<div [hidden]="submitted" style="width: 400px;" class="offset-3">
+    <h3>Make a Transfer</h3>
     <form (ngSubmit)="onSubmit()">
         <div *ngIf="transferType === 'own'">
             <div class="form-group">
@@ -45,6 +45,11 @@
     </form>
 </div>
 
-<div [hidden]="!submitted">
+<div [hidden]="!submitted" class="centered">
     <h4>You submitted successfully!</h4>
+    <div>Payment Amount: {{transfer.transactionAmount}}</div>
+    <div>From Account: {{transfer.debitAccount}}</div>
+    <div>To Account: {{transfer.creditAccount}}</div>
+    <div>Reference: {{transfer.reference}}</div>
+    <div>Status: Success</div>
 </div>
