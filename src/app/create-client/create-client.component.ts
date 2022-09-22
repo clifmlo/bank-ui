@@ -12,6 +12,7 @@ export class CreateClientComponent implements OnInit {
 
   client: Client = new Client();
   submitted = false;
+  submitError = false;
 
   constructor(private clientService: ClientService, private router: Router) { }
 
@@ -24,13 +25,20 @@ export class CreateClientComponent implements OnInit {
   }
 
   save() {
-    this.clientService.createClient(this.client).subscribe(data => console.log(data), error => console.log(error));
+    this.clientService.createClient(this.client).subscribe(
+        data => {
+            console.log(data),
+            this.submitted = true            
+        }, 
+        error => {
+            console.log(error),
+            this.submitError = true;
+        }
+    );
     this.client = new Client();
   }
 
-  onSubmit() {
-    this.submitted = true;
-    this.save();
-    this.router.navigate(['/clients']);
-  }
+    onSubmit() {          
+        this.save();    
+    }
 }

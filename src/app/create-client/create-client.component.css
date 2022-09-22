@@ -1,0 +1,17 @@
+.centered-message-box{
+    margin: auto;
+    margin-left: 30%;
+    width: 25%;
+    border: 1px solid #FFFF00;
+    background-color: greenyellow;
+    padding: 10px;
+}
+
+.centered-error-message-box{
+    margin: auto;
+    margin-left: 30%;
+    width: 25%;
+    border: 1px solid #FFFF00;
+    background-color: red;
+    padding: 10px;
+}

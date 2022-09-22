@@ -4,8 +4,6 @@ export class Client {
     surname: string;
     idNumber: string;
     email: string;
-    contactNumber: string;
-    password: string;
-    confirmPassword: string;
+    contactNumber: string;   
     bankAccounts : [];
 }
