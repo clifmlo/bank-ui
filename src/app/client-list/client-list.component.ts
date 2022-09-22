@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 })
 export class ClientListComponent implements OnInit {
   clients: Observable<Client[]>;
+  deleteSuccess = false;
 
   constructor(private clientService: ClientService,
     private router: Router) {}
@@ -25,10 +26,14 @@ export class ClientListComponent implements OnInit {
 
   deleteClient(id: number) {
     if(confirm("Are you sure to delete this user?")) {
+        
         this.clientService.deleteClient(id)
         .subscribe(
         data => {
-           window.location.reload();
+           this.deleteSuccess = true;
+            setTimeout(function(){
+                window.location.reload();
+            },1000);           
         },
         error => console.log(error));
     }
