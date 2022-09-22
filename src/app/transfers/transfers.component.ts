@@ -31,4 +31,8 @@ export class TransfersComponent implements OnInit {
         this.submitted = true;
         this.transactionService.transfer(this.transfer).subscribe(data => console.log(data), error => console.log(error));    
     }
+    
+    reload() {
+        this.router.navigate(['/accounts']);
+    }
 }

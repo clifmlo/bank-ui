@@ -41,7 +41,8 @@
             <input type="text" class="form-control"  required [(ngModel)]="transfer.reference" name="reference">
         </div>
         <br>
-        <button type="submit" class="btn btn-success">Submit</button>
+        <button type="submit" class="btn btn-success btn-submit">Submit</button>
+        <button type="submit" class="btn btn-dark" (click)="reload()">Back</button>
     </form>
 </div>
 
