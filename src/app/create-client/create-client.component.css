@@ -5,6 +5,7 @@
     border: 1px solid #FFFF00;
     background-color: greenyellow;
     padding: 10px;
+    border-radius: 5px;
 }
 
 .centered-error-message-box{
@@ -14,4 +15,5 @@
     border: 1px solid #FFFF00;
     background-color: red;
     padding: 10px;
+    border-radius: 5px;
 }

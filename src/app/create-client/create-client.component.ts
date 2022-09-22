@@ -38,7 +38,8 @@ export class CreateClientComponent implements OnInit {
     this.client = new Client();
   }
 
-    onSubmit() {          
+    onSubmit() { 
+        this.submitError = false;         
         this.save();    
     }
 }

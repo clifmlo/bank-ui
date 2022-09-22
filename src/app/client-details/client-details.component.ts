@@ -38,5 +38,4 @@ export class ClientDetailsComponent implements OnInit {
     deposit(accountNumber: string){
        this.router.navigate(['deposit/', accountNumber]);
     }
-  
 }

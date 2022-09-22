@@ -14,6 +14,7 @@ export class CreateBankAccountComponent implements OnInit {
   bankAccount: CreateBankAccount = new CreateBankAccount();
   deposit: Deposit = new Deposit();
   submitted = false;
+  submitError = false;
 
   constructor(private bankAccountService: BankAccountService, private route: ActivatedRoute, private router: Router) { }
 
@@ -29,19 +30,28 @@ export class CreateBankAccountComponent implements OnInit {
 
     save() {      
         this.bankAccountService.createBankAccount(this.bankAccount)
-        .subscribe(data => console.log(data), error => console.log(error));
+        .subscribe(
+            data => {
+               console.log(data),
+               this.submitted = true
+            }, 
+            error => {
+                console.log(error),
+                this.submitError = true;
+            }
+        );
         this.bankAccount = new CreateBankAccount();
     }
 
-  onSubmit() {
-    this.submitted = true;
-    this.setValues();
-    this.save();
-    this.router.navigate(['/client/details/' + this.id]);
-  }
-  
-  setValues() {
-    this.bankAccount.userId = this.id; 
-    this.bankAccount.deposit = this.deposit; 
-  }
+    onSubmit() {  
+      this.submitError = false;         
+      this.setValues();
+      this.save();
+      //this.router.navigate(['/client/details/' + this.id]);
+    }
+
+    setValues() {
+      this.bankAccount.userId = this.id; 
+      this.bankAccount.deposit = this.deposit; 
+    }
 }
