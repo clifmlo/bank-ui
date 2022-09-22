@@ -48,9 +48,8 @@ export class LoginService {
     return user
   }
   
-  
     redirectUser() {
-        var role=  this.getLoggedInUser().roles[0].name;
+        var role = this.getLoggedInUser().roles[0].name;
         if (role === "ADMIN") {
             this.router.navigate(['/clients']);
         } else if (role === "USER") {

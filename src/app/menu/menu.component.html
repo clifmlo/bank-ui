@@ -6,7 +6,7 @@
                 <a (click)="home()" class="nav-link"  routerLinkActive="active">Home</a>
             </li>                        
             <li *ngIf="loggedInRole === 'ADMIN'" class="nav-item" style="margin-left: 10px;">
-                <a routerLink="add" class="nav-link" routerLinkActive="active">Add Client</a>
+                <a routerLink="client/add" class="nav-link" routerLinkActive="active">Add Client</a>
             </li>
         </ul>
         <ul class="navbar-nav ml-auto pull-right" *ngIf="isLoggedIn" style="margin-left: 78%">

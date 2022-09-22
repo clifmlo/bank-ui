@@ -9,7 +9,9 @@ export class HttpInterceptorService implements HttpInterceptor {
     constructor(private loginService: LoginService) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        if (this.loginService.isUserLoggedIn() && req.url.indexOf('basicauth') === -1) {           
+        console.log("loggedin: "+this.loginService.isUserLoggedIn());
+        console.log("index: "+req.url.indexOf('basicauth'));
+        if (!this.loginService.isUserLoggedIn()) {           
             const authReq = req.clone({
                 headers: new HttpHeaders({
                     'Content-Type': 'application/json',

@@ -8,7 +8,6 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  welcomeMessage = 'Test';
   isLoggedIn = false;
   loggedInName : string;
   loggedInRole: string;
@@ -31,5 +30,4 @@ export class MenuComponent implements OnInit {
   home() {
     this.loginService.redirectUser();
   }
-
 }

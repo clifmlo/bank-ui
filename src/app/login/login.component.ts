@@ -21,17 +21,18 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private loginService: LoginService) {   }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+        if (this.loginService.isUserLoggedIn()){
+            this.loginService.redirectUser();
+        }
+    }
 
   handleLogin() {
     this.loginService.authenticate(this.username, this.password).subscribe((user)=> {
       this.loginService.registerSuccessfulLogin(user);
       var role = this.loginService.getLoggedInUser().roles[0].name;
-      console.log(role);
       this.invalidLogin = false;
       this.loginSuccess = true;
-      this.successMessage = 'Login Successful.';
       
       if (role === "ADMIN") {
         this.router.navigate(['/clients']);

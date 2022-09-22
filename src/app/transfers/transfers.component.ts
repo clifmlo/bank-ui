@@ -5,6 +5,7 @@ import { Account } from "../model/account";
 import { Transfer } from "../model/transfer";
 import { Component, OnInit } from "@angular/core";
 import { Router, ActivatedRoute } from '@angular/router';
+import { LoginService } from '../service/login.service';
 
 @Component({
   selector: 'app-transfers',
@@ -16,13 +17,14 @@ export class TransfersComponent implements OnInit {
    transferType: string;
    ownTransfere = false;
    accounts: Observable<Account[]>;
-   authUserId = 1; //TODO fetch from session
+   authUserId: number;
    submitted = false;
    transfer: Transfer = new Transfer();
    
-    constructor(private accountService: BankAccountService, private transactionService: TransactionService, private route: ActivatedRoute, private router: Router) {}
+    constructor(private accountService: BankAccountService, private transactionService: TransactionService, private loginService: LoginService, private route: ActivatedRoute, private router: Router) {}
 
     ngOnInit(){
+        this.authUserId = this.loginService.getLoggedInUser().id;
         this.transferType = this.route.snapshot.params['type']; 
         this.accounts = this.accountService.getAccountsList(this.authUserId);        
     }
