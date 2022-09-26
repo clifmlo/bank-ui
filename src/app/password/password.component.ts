@@ -21,6 +21,8 @@ export class PasswordComponent implements OnInit {
     }
 
     onSubmit() {
+        this.passwordChange.password = window.btoa(this.passwordChange.password);
+        this.passwordChange.confirmPassword = window.btoa(this.passwordChange.confirmPassword);
         this.passwordService.updatePassword(this.passwordChange).subscribe(
             data => {
                 this.loginService.logout(),
