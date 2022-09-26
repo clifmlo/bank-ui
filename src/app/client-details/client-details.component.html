@@ -25,6 +25,12 @@
     <div>
         <label>Email: </label> {{client.email}}
     </div>
+    
+    <div>
+        <label>Account Status: </label> 
+        <span *ngIf="client.active=== true"> Active</span>
+        <span *ngIf="client.active === false"> Inactive</span>
+    </div>
     <br>   
     
     <div class="panel panel-default">

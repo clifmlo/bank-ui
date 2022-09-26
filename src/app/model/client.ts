@@ -6,4 +6,7 @@ export class Client {
     email: string;
     contactNumber: string;   
     bankAccounts : [];
+    password: string;
+    confirmPassword: string;
+    active: boolean;
 }

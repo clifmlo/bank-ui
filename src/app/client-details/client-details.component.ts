@@ -21,7 +21,7 @@ export class ClientDetailsComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];    
     this.clientService.getClient(this.id)
       .subscribe((data: Client) => {
-        console.log(data.bankAccounts)
+        console.log(data)
         this.client = data;
         this.accounts = data.bankAccounts;
       }, error => console.log(error));

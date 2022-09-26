@@ -16,6 +16,7 @@ import { DepositComponent } from './deposit/deposit.component';
 import { AccountsComponent } from './accounts/accounts.component';
 import { AccountDetailsComponent } from './account-details/account-details.component';
 import { TransfersComponent } from './transfers/transfers.component';
+import { PasswordComponent } from './password/password.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { TransfersComponent } from './transfers/transfers.component';
     DepositComponent,
     AccountsComponent,
     AccountDetailsComponent,
-    TransfersComponent
+    TransfersComponent,
+    PasswordComponent
   ],
   imports: [
     BrowserModule,

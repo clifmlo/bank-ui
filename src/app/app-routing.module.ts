@@ -10,6 +10,7 @@ import { AccountsComponent } from './accounts/accounts.component';
 import { AccountDetailsComponent } from './account-details/account-details.component';
 import { TransfersComponent } from './transfers/transfers.component';
 import { MenuComponent } from './menu/menu.component';
+import { PasswordComponent } from './password/password.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent},
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'accounts', component: AccountsComponent },
   { path: 'account-details/:account', component: AccountDetailsComponent },
   { path: 'transfer/:type', component: TransfersComponent },
+  { path: 'password/change', component: PasswordComponent },
 ];
 
 @NgModule({
