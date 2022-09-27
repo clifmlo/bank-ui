@@ -49,14 +49,15 @@ export class LoginService {
   }
   
     redirectUser() {
+        
         var userAccount =  this.getLoggedInUser();
         var role = userAccount.roles[0].name;
         if (userAccount.active === false) {
             this.router.navigate(['/password/change']);
-        } else if (role === "ADMIN") {
-            this.router.navigate(['/clients']);
-        } else if (role === "USER") {
-            this.router.navigate(['/accounts']);
+        } else if (role === "ADMIN") {            
+            window.location.href="/clients"
+        } else if (role === "USER") {            
+            window.location.href="/accounts"
         } else {
             this.router.navigate(['/login']);
         }
