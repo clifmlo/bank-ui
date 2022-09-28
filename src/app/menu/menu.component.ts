@@ -16,18 +16,18 @@ export class MenuComponent implements OnInit {
     private router: Router,
     private loginService: LoginService) { }
 
-  ngOnInit(): void {
-    this.isLoggedIn = this.loginService.isUserLoggedIn();
-    console.log('menu ->' + this.isLoggedIn);
-    this.loggedInName =  this.loginService.getLoggedInUser().name;
-    this.loggedInRole =  this.loginService.getLoggedInUser().roles[0].name;
-  }
+    ngOnInit(): void {
+      this.isLoggedIn = this.loginService.isUserLoggedIn();
+      console.log('menu ->' + this.isLoggedIn);
+      this.loggedInName =  this.loginService.getLoggedInUser().name;
+      this.loggedInRole =  this.loginService.getLoggedInUser().roles[0].name;
+    }
 
-  handleLogout() {
-    this.loginService.logout();
-  }
-  
-  home() {
-    this.loginService.redirectUser();
-  }
+    handleLogout() {
+      this.loginService.logout();
+    }
+
+    home() {
+      this.loginService.redirectUser();
+    }
 }

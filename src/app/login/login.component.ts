@@ -15,7 +15,7 @@ export class LoginComponent implements OnInit {
   successMessage: string;
   invalidLogin = false;
   loginSuccess = false;
-
+  
   constructor(
     private route: ActivatedRoute,
     private router: Router,
