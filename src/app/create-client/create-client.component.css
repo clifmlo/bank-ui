@@ -1,6 +1,6 @@
 .centered-message-box{
     margin: auto;
-    margin-left: 30%;
+    margin-left: 35%;
     width: 25%;
     border: 1px solid #FFFF00;
     background-color: #60f07f;
@@ -16,4 +16,10 @@
     background-color: red;
     padding: 10px;
     border-radius: 5px;
+}
+
+.card {
+    margin: auto;
+    margin-bottom: 15px;
+    width: 75%;
 }
