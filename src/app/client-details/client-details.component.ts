@@ -34,7 +34,7 @@ export class ClientDetailsComponent implements OnInit {
       this.router.navigate(['new-bank-account/', this.id]);
     }
     
-    deposit(accountNumber: string){
-       this.router.navigate(['deposit/', accountNumber]);
+    deposit(accountNumber: string, id: number){
+       this.router.navigate(['deposit/', accountNumber, id]);
     }
 }

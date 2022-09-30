@@ -1,34 +1,49 @@
-<div [hidden]="!submitted" class="centered-message-box">
-    You submitted successfully!  
+<!DOCTYPE html>
+<html lang="en">
+<head>  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<div [hidden]="!submitted" class="alert alert-success alert-dismissible text-center">
+  <span (click)="closeSuccessMessage()" class="close" data-dismiss="alert" aria-label="close">&times;</span>
+  <strong>You submitted successfully!</strong>
+</div>
+   
+<div [hidden]="!submitError"  class="alert alert-danger alert-dismissible text-center">
+  <span (click)="closeErrorMessage()" class="close" data-dismiss="alert" aria-label="close">&times;</span>
+  <strong>Error occurred during submission! </strong>
 </div>
 
-<div [hidden]="!submitError" class="centered-error-message-box">
-    Error occurred during submission!  
-</div>
+<div class="card">
+    <br>
+    <div style="width: 400px;" class="offset-3">
+        <h3>New Bank Account</h3>
+        <form (ngSubmit)="onSubmit()">      
+            <div class="form-group">
+                <label for="accountType">Account Type</label>
+                <select class="form-control" id="accountType" [(ngModel)]="bankAccount.accountType" name="accountType" ng-required="true">
+                  <option value="CHEQUE">CHEQUE</option>
+                    <option value="CREDIT">CREDIT</option>
+                    <option value="SAVINGS">SAVINGS</option>
+                </select>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="deposit">Deposit</label>
+                <input type="number" class="form-control" id="deposit" [(ngModel)]="deposit.amount" name="deposit">
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="reference">Reference</label>
+                <input type="text" class="form-control" id="reference" [(ngModel)]="deposit.reference" name="reference">
+            </div>
 
-<div style="width: 400px;" class="offset-3">
-    <h3>New Bank Account</h3>
-    <form (ngSubmit)="onSubmit()">      
-        <div class="form-group">
-            <label for="accountType">Account Type</label>
-            <select class="form-control" id="accountType" [(ngModel)]="bankAccount.accountType" name="accountType" ng-required="true">
-              <option value="CHEQUE">CHEQUE</option>
-                <option value="CREDIT">CREDIT</option>
-                <option value="SAVINGS">SAVINGS</option>
-            </select>
-        </div>
-        <br>
-        <div class="form-group">
-            <label for="deposit">Deposit</label>
-            <input type="number" class="form-control" id="deposit" [(ngModel)]="deposit.amount" name="deposit">
-        </div>
-        <br>
-        <div class="form-group">
-            <label for="reference">Reference</label>
-            <input type="text" class="form-control" id="reference" [(ngModel)]="deposit.reference" name="reference">
-        </div>
-        
-        <br>        
-        <button type="submit" class="btn btn-success">Submit</button>
-    </form>
-</div>
+            <br> 
+            <button (click)="accountDetails()" class="btn btn-dark">Back</button>
+            <button style="margin-bottom: 10px" type="submit" class="btn btn-success btn-submit">Submit</button>
+        </form>
+    </div>
+</div>    

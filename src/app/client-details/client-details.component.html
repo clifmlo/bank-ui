@@ -56,7 +56,8 @@
                     <td>{{account.availableBalance}}</td>                                                         
                     <td>{{account.latestBalance}}</td>                                                       
                     <td>                        
-                        <button (click)="deposit(account.accountNumber)" class="btn btn-info" style="margin-left: 10px">Deposit</button>
+                        <button (click)="deposit(account.accountNumber, client.id)" class="btn btn-info" style="margin-left: 10px">Deposit</button>
+                        <br>
                     </td>                    
                 </tr>
             </tbody>
@@ -64,7 +65,4 @@
     </div>
 </div>
 </div>
-
-<br>
-<br>
-<button (click)="list()" class="btn btn-dark">Back</button><br>
+<button (click)="list()" class="btn btn-dark">Back</button>

@@ -33,3 +33,13 @@
     padding: 10px;
     border-radius: 5px;
 }
+
+.card {
+    margin: auto;
+    margin-bottom: 15px;
+    width: 75%;
+}
+
+button {
+    margin-bottom: 10px;
+}

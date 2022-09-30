@@ -9,19 +9,33 @@ import { TransactionService } from '../service/transaction.service';
   styleUrls: ['./deposit.component.css']
 })
 export class DepositComponent implements OnInit {
-  account: string;
-  deposit: Deposit = new Deposit();
-  submitted = false;
-  
-  constructor(private transactionService: TransactionService, private route: ActivatedRoute, private router: Router) { }
+    id: number;
+    account: string;
+    deposit: Deposit = new Deposit();
+    submitted = false;
+    submitError = false;
 
-  ngOnInit(): void {
-      this.account = this.route.snapshot.params['account'];  
-  }
- 
-  onSubmit() {
-     this.submitted = true;
-     this.deposit.accountNumber = this.account; 
-     this.transactionService.deposit(this.deposit).subscribe(data => console.log(data), error => console.log(error));    
-  }
+    constructor(private transactionService: TransactionService, private route: ActivatedRoute, private router: Router) { }
+
+    ngOnInit(): void {
+        this.account = this.route.snapshot.params['account'];  
+        this.id = this.route.snapshot.params['id'];  
+    }
+
+    onSubmit() {       
+       this.deposit.accountNumber = this.account; 
+       this.transactionService.deposit(this.deposit).subscribe(data => this.submitted = true, error =>  this.submitError = true);    
+    }
+  
+    closeSuccessMessage(){
+        this.submitted = false;
+    }
+
+    closeErrorMessage(){
+        this.submitError = false;  
+    }
+    
+    accountDetails(){
+        this.router.navigate(['/client/details/' + this.id]);
+    }
 }

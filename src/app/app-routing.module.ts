@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'client/add', component: CreateClientComponent },
   { path: 'client/details/:id', component: ClientDetailsComponent },
   { path: 'new-bank-account/:id', component: CreateBankAccountComponent },
-  { path: 'deposit/:account', component: DepositComponent },
+  { path: 'deposit/:account/:id', component: DepositComponent },
   { path: 'accounts', component: AccountsComponent },
   { path: 'account-details/:account', component: AccountDetailsComponent },
   { path: 'transfer/:type', component: TransfersComponent },

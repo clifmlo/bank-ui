@@ -46,12 +46,23 @@ export class CreateBankAccountComponent implements OnInit {
     onSubmit() {  
       this.submitError = false;         
       this.setValues();
-      this.save();
-      //this.router.navigate(['/client/details/' + this.id]);
+      this.save();     
     }
 
     setValues() {
       this.bankAccount.userId = this.id; 
       this.bankAccount.deposit = this.deposit; 
+    }
+    
+    accountDetails(){
+        this.router.navigate(['/client/details/' + this.id]);
+    }
+    
+    closeSuccessMessage(){
+        this.submitted = false;
+    }
+
+    closeErrorMessage(){
+        this.submitError = false;  
     }
 }

@@ -1,25 +1,48 @@
-<div [hidden]="submitted" style="width: 400px;" class="offset-3">
-    <h3>Make a Deposit</h3>
-    <form (ngSubmit)="onSubmit()">
-        <h5>Account Number: {{account}}</h5>
-        <div class="form-group">
-            <label for="amount">Amount</label>
-            <input type="number" class="form-control" id="number" required [(ngModel)]="deposit.amount" name="amount">
-        </div>
-        <br>
-        <div class="form-group">
-            <label for="reference">Reference</label>
-            <input type="text" class="form-control" id="reference" required [(ngModel)]="deposit.reference" name="reference">
-        </div> 
-        <br>
-        <button type="submit" class="btn btn-success">Submit</button>
-    </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<div [hidden]="!submitted" class="alert alert-success alert-dismissible text-center">
+  <span (click)="closeSuccessMessage()" class="close" data-dismiss="alert" aria-label="close">&times;</span>
+  <strong>You submitted successfully!</strong>
+</div>
+   
+<div [hidden]="!submitError"  class="alert alert-danger alert-dismissible text-center">
+  <span (click)="closeErrorMessage()" class="close" data-dismiss="alert" aria-label="close">&times;</span>
+  <strong>Error occurred during submission! </strong>
 </div>
 
-<div [hidden]="!submitted" class="centered">
-    <h4>You submitted successfully!</h4>
-    <div>Deposit Amount: {{deposit.amount}}</div>
-    <div>Account Number: {{deposit.accountNumber}}</div>
-    <div>Reference: {{deposit.reference}}</div>
-    <div>Status: Success</div>
-</div>
+<div class="card">
+    <div [hidden]="submitted" style="width: 400px;" class="offset-3">
+        <h3>Make a Deposit</h3>
+        <form (ngSubmit)="onSubmit()">
+            <h5>Account Number: {{account}}</h5>
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <input type="number" class="form-control" id="number" required [(ngModel)]="deposit.amount" name="amount">
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="reference">Reference</label>
+                <input type="text" class="form-control" id="reference" required [(ngModel)]="deposit.reference" name="reference">
+            </div> 
+            <br>
+            <button onclick="history.back()" class="btn btn-dark">Back</button>
+            <button style="margin-bottom: 10px" type="submit" class="btn btn-success btn-submit">Submit</button>
+        </form>
+    </div>
+
+    <div [hidden]="!submitted" class="centered">
+        <h4>Transaction Details</h4>
+        <div>Deposit Amount: {{deposit.amount}}</div>
+        <div>Account Number: {{deposit.accountNumber}}</div>
+        <div>Reference: {{deposit.reference}}</div>
+        <div>Status: Success</div>
+    </div>
+    <button [hidden]="!submitted" (click)="accountDetails()" class="btn btn-dark">Finish</button>
+</div>    
