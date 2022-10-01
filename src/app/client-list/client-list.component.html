@@ -1,5 +1,11 @@
-<div [hidden]="!deleteSuccess" class="centered-message-box">
-    Record deleted successfully!  
+<div [hidden]="!deleteSuccess" class="alert alert-success alert-dismissible text-center">
+  <span class="close span-alert-box" data-dismiss="alert" aria-label="close">&times;</span>
+  <strong>You submitted successfully!</strong>
+</div>
+   
+<div [hidden]="!submitError"  class="alert alert-danger alert-dismissible text-center">
+  <span (click)="closeErrorMessage()" class="close span-alert-box" data-dismiss="alert" aria-label="close">&times;</span>
+  <strong>Error occurred during submission! </strong>
 </div>
 
 <div class="panel panel-default">
@@ -20,7 +26,7 @@
                     <td>{{client.name}}</td>
                     <td>{{client.surname}}</td>                                                         
                     <td>
-                        <button (click)="deleteClient(client.id)" class="btn btn-danger">Delete</button>
+                        <button (click)="open(content, client.id, client.name)" class="btn btn-danger">Delete</button>
                         <button (click)="clientDetails(client.id)" class="btn btn-info" style="margin-left: 10px">Details</button>
                     </td>                    
                 </tr>
@@ -28,3 +34,18 @@
         </table>
     </div>
 </div>
+<ng-template #content let-c="close" let-d="dismiss">    
+      <div class="modal-header">    
+          <h4 class="modal-title" id="modal-basic-title">Confirmation</h4>    
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">    
+              <span aria-hidden="true">×</span>    
+          </button>    
+      </div>    
+      <div class="modal-body">    
+          <p>Are you sure to delete {{clientName}} ?</p>    
+      </div>    
+      <div class="modal-footer">    
+          <button type="button" class="btn btn-outline-dark" (click)="d('Cross click')">Cancel</button>    
+          <button type="button" class="btn btn-outline-dark" (click)="c('yes')">Yes</button>    
+      </div>    
+  </ng-template> 
