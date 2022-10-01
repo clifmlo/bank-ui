@@ -50,24 +50,13 @@ export class ClientListComponent implements OnInit {
    open(content, id, name) {  
         this.clientName = name;
         this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {  
-          this.closeResult = `Closed with: ${result}`;  
-          if (result === 'yes') {  
-              this.deleteClient(id);
-          }  
-        }, (reason) => {  
-          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;  
-        });  
-    }  
-  
-    private getDismissReason(reason: any): string {  
-        if (reason === ModalDismissReasons.ESC) {  
-          return 'by pressing ESC';  
-        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {  
-          return 'by clicking on a backdrop';  
-        } else {  
-          return `with: ${reason}`;  
-        }  
-    }  
+            this.closeResult = `Closed with: ${result}`;  
+                if (result === 'yes') {  
+                    this.deleteClient(id);
+                }  
+            }
+        );  
+    }   
   
     closeErrorMessage(){
         this.submitError = false;

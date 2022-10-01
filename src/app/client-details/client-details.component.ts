@@ -19,6 +19,7 @@ export class ClientDetailsComponent implements OnInit {
     deleteError = false;
     accountNumber: string;
     closeResult: string;
+    errorMessage: string;
 
     constructor(private clientService: ClientService, private bankAccountService: BankAccountService,private route: ActivatedRoute, private router: Router, private modalService: NgbModal) { }
 
@@ -54,7 +55,10 @@ export class ClientDetailsComponent implements OnInit {
             }, 
             error => {
                 this.deleteError = true;
-                console.log(error)
+                if (error.error.message.includes("You cannot delete an account")) {
+                    this.errorMessage = error.error.message;
+                }
+                console.log(error.error.message)
             }
         );
     }
@@ -63,23 +67,12 @@ export class ClientDetailsComponent implements OnInit {
         this.accountNumber = accountNumber;
         this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {  
           this.closeResult = `Closed with: ${result}`;  
-          if (result === 'yes') {  
-              this.deleteAccount(id);
-          }  
-        }, (reason) => {  
-          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;  
-        });  
+                if (result === 'yes') {  
+                    this.deleteAccount(id);
+                }  
+            }, 
+        );  
     }  
-  
-    private getDismissReason(reason: any): string {  
-        if (reason === ModalDismissReasons.ESC) {  
-          return 'by pressing ESC';  
-        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {  
-          return 'by clicking on a backdrop';  
-        } else {  
-          return `with: ${reason}`;  
-        } 
-    }
     
     closeSuccessMessage(){
         this.deleteSuccess = false;
