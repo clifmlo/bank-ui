@@ -1,6 +1,6 @@
 <div [hidden]="!deleteSuccess" class="alert alert-success alert-dismissible text-center">
   <span class="close span-alert-box" data-dismiss="alert" aria-label="close">&times;</span>
-  <strong>You submitted successfully!</strong>
+  <strong>Client deleted!</strong>
 </div>
    
 <div [hidden]="!submitError"  class="alert alert-danger alert-dismissible text-center">
@@ -42,7 +42,7 @@
           </button>    
       </div>    
       <div class="modal-body">    
-          <p>Are you sure to delete {{clientName}} ?</p>    
+          <p>Are you sure you want to delete {{clientName}}?</p>    
       </div>    
       <div class="modal-footer">    
           <button type="button" class="btn btn-outline-dark" (click)="d('Cross click')">Cancel</button>    

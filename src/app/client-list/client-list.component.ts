@@ -11,21 +11,21 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ["./client-list.component.css"]
 })
 export class ClientListComponent implements OnInit {
-  clients: Observable<Client[]>;
-  deleteSuccess = false;
-  closeResult: string;
-  clientName: string; 
-  submitError = false;
+    clients: Observable<Client[]>;
+    deleteSuccess = false;
+    closeResult: string;
+    clientName: string; 
+    submitError = false;
 
-  constructor(private clientService: ClientService, private router: Router, private modalService: NgbModal) {}
+    constructor(private clientService: ClientService, private router: Router, private modalService: NgbModal) {}
 
-  ngOnInit() {
-    this.reloadData();
-  }
+    ngOnInit() {
+      this.reloadData();
+    }
 
-  reloadData() {
-    this.clients = this.clientService.getClientsList();
-  }
+    reloadData() {
+      this.clients = this.clientService.getClientsList();
+    }
 
     deleteClient(id: number) {
         this.clientService.deleteClient(id)
@@ -43,34 +43,33 @@ export class ClientListComponent implements OnInit {
             );
     }
   
-  clientDetails(id: number){
-    this.router.navigate(['client/details', id]);
-  }
+    clientDetails(id: number){
+      this.router.navigate(['client/details', id]);
+    }
   
    open(content, id, name) {  
-    this.clientName = name;
-    this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {  
-      this.closeResult = `Closed with: ${result}`;  
-      if (result === 'yes') {  
-          this.deleteClient(id);
-      }  
-    }, (reason) => {  
-      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;  
-    });  
-  }  
+        this.clientName = name;
+        this.modalService.open(content, { ariaLabelledBy: 'modal-basic-title' }).result.then((result) => {  
+          this.closeResult = `Closed with: ${result}`;  
+          if (result === 'yes') {  
+              this.deleteClient(id);
+          }  
+        }, (reason) => {  
+          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;  
+        });  
+    }  
   
     private getDismissReason(reason: any): string {  
-      if (reason === ModalDismissReasons.ESC) {  
-        return 'by pressing ESC';  
-      } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {  
-        return 'by clicking on a backdrop';  
-      } else {  
-        return `with: ${reason}`;  
-      }  
+        if (reason === ModalDismissReasons.ESC) {  
+          return 'by pressing ESC';  
+        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {  
+          return 'by clicking on a backdrop';  
+        } else {  
+          return `with: ${reason}`;  
+        }  
     }  
   
     closeErrorMessage(){
         this.submitError = false;
     }
-  
 }

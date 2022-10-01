@@ -22,4 +22,8 @@ export class BankAccountService {
   getAccountDetails(accountNumber: string): Observable<any> {
     return this.http.get(`${this.baseUrl}bank-account/${accountNumber}`); 
   }
+  
+  deleteAccount(id: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}bank-account/delete/${id}`); 
+  }
 }
