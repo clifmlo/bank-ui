@@ -27,7 +27,6 @@ export class PasswordComponent implements OnInit {
     }
 
     onSubmit() {
-        console.log(this.frmSignup.value);
         this.passwordChange.password = window.btoa(this.frmSignup.value.password);
         this.passwordChange.confirmPassword = window.btoa(this.frmSignup.value.confirmPassword);
         this.passwordService.updatePassword(this.passwordChange).subscribe(
@@ -82,6 +81,14 @@ export class PasswordComponent implements OnInit {
       }
     );
   }
+
+    closeSuccessMessage(){
+        this.submitted = false;
+    }
+
+    closeErrorMessage(){
+        this.submitError = false;  
+    }
 
 }
 

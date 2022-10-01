@@ -19,6 +19,8 @@ export class TransfersComponent implements OnInit {
    accounts: Observable<Account[]>;
    authUserId: number;
    submitted = false;
+   submitError = false;
+   successMessage = false;
    transfer: Transfer = new Transfer();
    
     constructor(private accountService: BankAccountService, private transactionService: TransactionService, private loginService: LoginService, private route: ActivatedRoute, private router: Router) {}
@@ -29,12 +31,28 @@ export class TransfersComponent implements OnInit {
         this.accounts = this.accountService.getAccountsList(this.authUserId);        
     }
 
-    onSubmit(){
-        this.submitted = true;
-        this.transactionService.transfer(this.transfer).subscribe(data => console.log(data), error => console.log(error));    
+    onSubmit(){        
+        this.transactionService.transfer(this.transfer).subscribe(
+            data => {
+                this.submitted = true, 
+                this.successMessage = true
+            },
+            error => {
+                this.submitError = true,
+                console.log(error)                
+            }
+        );    
     }
     
     reload() {
         this.router.navigate(['/accounts']);
+    }
+    
+    closeSuccessMessage(){
+        this.successMessage = false;
+    }
+
+    closeErrorMessage(){
+        this.submitError = false;  
     }
 }

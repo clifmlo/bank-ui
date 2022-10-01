@@ -14,6 +14,7 @@ export class DepositComponent implements OnInit {
     deposit: Deposit = new Deposit();
     submitted = false;
     submitError = false;
+    successMessage = false;
 
     constructor(private transactionService: TransactionService, private route: ActivatedRoute, private router: Router) { }
 
@@ -24,11 +25,17 @@ export class DepositComponent implements OnInit {
 
     onSubmit() {       
        this.deposit.accountNumber = this.account; 
-       this.transactionService.deposit(this.deposit).subscribe(data => this.submitted = true, error =>  this.submitError = true);    
+       this.transactionService.deposit(this.deposit).subscribe(
+            data => {
+                this.submitted = true,
+                this.successMessage = true;
+            }, 
+            error =>  this.submitError = true
+       );    
     }
   
     closeSuccessMessage(){
-        this.submitted = false;
+        this.successMessage = false;
     }
 
     closeErrorMessage(){

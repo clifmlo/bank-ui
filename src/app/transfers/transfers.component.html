@@ -1,56 +1,78 @@
-<div [hidden]="submitted" style="width: 400px;" class="offset-3">
-    <h3>Make a Transfer</h3>
-    <form (ngSubmit)="onSubmit()">
-        <div *ngIf="transferType === 'own'">
-            <div class="form-group">
-                <label for="from">From Account</label>
-                <select type="text" class="form-control" required [(ngModel)]="transfer.debitAccount" name="from">               
-                    <option *ngFor="let account of accounts | async" [ngValue]="account.accountNumber">{{account.accountType + ' | ' + account.accountNumber + ' | R'+ account.availableBalance }}</option>
-                </select>
-            </div>
-            <br>
-            <div class="form-group">
-                <label for="to">To Account</label>
-                <select type="text" class="form-control" required [(ngModel)]="transfer.creditAccount" name="to">               
-                    <option *ngFor="let account of accounts | async" [ngValue]="account.accountNumber">{{account.accountType + ' | ' +account.accountNumber + ' | R'+ account.availableBalance}}</option>
-                </select>
-            </div>
-        </div>
-        
-        <div *ngIf="transferType === 'external'">
-            <div class="form-group">                        
-                <label for="from">From Account</label>
-                <select type="text" class="form-control" required [(ngModel)]="transfer.debitAccount" name="from">               
-                    <option *ngFor="let account of accounts | async" [ngValue]="account.accountNumber">{{account.accountType + ' | ' +account.accountNumber + ' | R'+ account.availableBalance}}</option>
-                </select>
-            </div>
-            <br>
-            <div class="form-group">
-                <label for="to">To Account</label>
-                 <input type="text" class="form-control"  required [(ngModel)]="transfer.creditAccount" name="to">        
-            </div>
-        </div>
-        <br>
-        <div class="form-group">
-            <label for="amount">Amount</label>
-            <input type="number" class="form-control" id="amount" required [(ngModel)]="transfer.transactionAmount" name="amount">
-        </div>
-        <br>
-        <div class="form-group">
-            <label for="reference">Reference</label>
-            <input type="text" class="form-control"  required [(ngModel)]="transfer.reference" name="reference">
-        </div>
-        <br>
-        <button type="submit" class="btn btn-success btn-submit">Submit</button>
-        <button type="submit" class="btn btn-dark" (click)="reload()">Back</button>
-    </form>
+<!DOCTYPE html>
+<html lang="en">
+<head>  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<div [hidden]="!successMessage" class="alert alert-success alert-dismissible text-center">
+  <span (click)="closeSuccessMessage()" class="close" data-dismiss="alert" aria-label="close">&times;</span>
+  <strong>You submitted successfully!</strong>
+</div>
+   
+<div [hidden]="!submitError"  class="alert alert-danger alert-dismissible text-center">
+  <span (click)="closeErrorMessage()" class="close" data-dismiss="alert" aria-label="close">&times;</span>
+  <strong>Error occurred during submission! </strong>
 </div>
 
-<div [hidden]="!submitted" class="centered">
-    <h4>You submitted successfully!</h4>
-    <div>Payment Amount: {{transfer.transactionAmount}}</div>
-    <div>From Account: {{transfer.debitAccount}}</div>
-    <div>To Account: {{transfer.creditAccount}}</div>
-    <div>Reference: {{transfer.reference}}</div>
-    <div>Status: Success</div>
-</div>
+<div class="card">
+    <div [hidden]="submitted" style="width: 400px;" class="offset-3">
+        <h3>Make a Transfer</h3>
+        <form (ngSubmit)="onSubmit()">
+            <div *ngIf="transferType === 'own'">
+                <div class="form-group">
+                    <label for="from">From Account</label>
+                    <select type="text" class="form-control" required [(ngModel)]="transfer.debitAccount" name="from">               
+                        <option *ngFor="let account of accounts | async" [ngValue]="account.accountNumber">{{account.accountType + ' | ' + account.accountNumber + ' | R'+ account.availableBalance }}</option>
+                    </select>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="to">To Account</label>
+                    <select type="text" class="form-control" required [(ngModel)]="transfer.creditAccount" name="to">               
+                        <option *ngFor="let account of accounts | async" [ngValue]="account.accountNumber">{{account.accountType + ' | ' +account.accountNumber + ' | R'+ account.availableBalance}}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div *ngIf="transferType === 'external'">
+                <div class="form-group">                        
+                    <label for="from">From Account</label>
+                    <select type="text" class="form-control" required [(ngModel)]="transfer.debitAccount" name="from">               
+                        <option *ngFor="let account of accounts | async" [ngValue]="account.accountNumber">{{account.accountType + ' | ' +account.accountNumber + ' | R'+ account.availableBalance}}</option>
+                    </select>
+                </div>
+                <br>
+                <div class="form-group">
+                    <label for="to">To Account</label>
+                     <input type="text" class="form-control"  required [(ngModel)]="transfer.creditAccount" name="to">        
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="amount">Amount</label>
+                <input type="number" class="form-control" id="amount" required [(ngModel)]="transfer.transactionAmount" name="amount">
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="reference">Reference</label>
+                <input type="text" class="form-control"  required [(ngModel)]="transfer.reference" name="reference">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-success btn-submit">Submit</button>
+            <button style="margin-bottom: 10px" type="submit" class="btn btn-dark" (click)="reload()">Back</button>
+        </form>
+    </div>
+
+    <div [hidden]="!submitted" class="centered">
+        <h4>Transaction Details</h4>
+        <div>Payment Amount R: {{transfer.transactionAmount}}</div>
+        <div>From Account: {{transfer.debitAccount}}</div>
+        <div>To Account: {{transfer.creditAccount}}</div>
+        <div>Reference: {{transfer.reference}}</div>
+        <div>Status: Success</div>        
+    </div>
+    <button [hidden]="!submitted" (click)="reload()" class="btn btn-dark">Finish</button>
+</div>    
