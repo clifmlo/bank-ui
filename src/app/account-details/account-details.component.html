@@ -2,19 +2,19 @@
 <hr/>
 <div *ngIf="account">
    <div>
-        <label>Account Number: </label> {{account.accountNumber}}
+        <label><strong>Account Number: </strong></label> {{account.accountNumber}}
     </div>
     <div>
-        <label>Account Type: </label> {{account.accountType}}
+        <label><strong>Account Type: </strong></label> {{account.accountType}}
     </div>
     <div>
-        <label>Status: </label> {{account.status}}
+        <label><strong>Status: </strong></label> {{account.status}}
     </div>
    <div>
-        <label>Available Balance: </label> {{account.availableBalance}}
+        <label><strong>Available Balance: </strong></label> {{account.availableBalance}}
     </div>
    <div>
-        <label>Latest Balance: </label> {{account.latestBalance}}
+        <label><strong>Latest Balance: </strong></label> {{account.latestBalance}}
    </div>
 
 <br>   
@@ -29,8 +29,8 @@
             <tr>
                 <th>Date</th>
                 <th>Reference</th>                   
-                <th>Money In</th>
-                <th>Money Out</th>
+                <th>Money In (R)</th>
+                <th>Money Out (R)</th>
                 <th>Status</th>
                 <th>Balance</th>               
             </tr>
@@ -39,13 +39,13 @@
             <tr *ngFor="let transaction of transactions">
                 <td>{{transaction.date_processed | date: 'dd-MM-yyyy hh:mm:ss' }}</td>
                 <td>{{transaction.reference}}</td>
-                <td *ngIf="transaction.transactionType === 'CREDIT'">{{transaction.creditEntry}}</td>
+                <td *ngIf="transaction.transactionType === 'CREDIT'">{{transaction.creditEntry | number : '.2-2'}}</td>
                 <td *ngIf="transaction.transactionType != 'CREDIT'"></td>
-                <td *ngIf="transaction.transactionType === 'DEBIT'">{{transaction.debitEntry}}</td>
+                <td *ngIf="transaction.transactionType === 'DEBIT'">{{transaction.debitEntry | number : '.2-2'}}</td>
                 <td *ngIf="transaction.transactionType != 'DEBIT'"></td>
                 <td>{{transaction.transactionStatus}}</td>
-                <td *ngIf="transaction.transactionType === 'CREDIT'">{{transaction.creditBalance}}</td>                               
-                <td *ngIf="transaction.transactionType === 'DEBIT'">{{transaction.debitBalance}}</td>                               
+                <td *ngIf="transaction.transactionType === 'CREDIT'">{{transaction.creditBalance | number : '.2-2'}}</td>                               
+                <td *ngIf="transaction.transactionType === 'DEBIT'">{{transaction.debitBalance | number : '.2-2'}}</td>                               
             </tr>
         </tbody>
     </table>

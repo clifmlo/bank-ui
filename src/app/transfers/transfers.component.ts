@@ -21,6 +21,7 @@ export class TransfersComponent implements OnInit {
    submitted = false;
    submitError = false;
    successMessage = false;
+   errorMessage: string;
    transfer: Transfer = new Transfer();
    
     constructor(private accountService: BankAccountService, private transactionService: TransactionService, private loginService: LoginService, private route: ActivatedRoute, private router: Router) {}
@@ -38,7 +39,10 @@ export class TransfersComponent implements OnInit {
                 this.successMessage = true
             },
             error => {
-                this.submitError = true,
+                if (error.error.message.includes("Credit account is inactive")) {
+                    this.errorMessage = error.error.message;
+                }
+                this.submitError = true,                
                 console.log(error)                
             }
         );    

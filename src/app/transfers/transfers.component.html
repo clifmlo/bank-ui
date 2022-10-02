@@ -4,8 +4,9 @@
 </div>
    
 <div [hidden]="!submitError"  class="alert alert-danger alert-dismissible text-center">
-  <span (click)="closeErrorMessage()" class="close span-alert-box" data-dismiss="alert" aria-label="close">&times;</span>
-  <strong>Error occurred during submission! </strong>
+  <span (click)="closeErrorMessage()" class="close span-alert-box" data-dismiss="alert" aria-label="close">&times;</span>  
+  <span *ngIf="errorMessage"><strong>Error! {{errorMessage}}</strong></span>
+  <span *ngIf="!errorMessage"><strong>Error occurred during submission!</strong></span>
 </div>
 
 <div class="card">

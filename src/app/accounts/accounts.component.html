@@ -17,6 +17,7 @@
             <thead>
                 <tr>
                     <th>Account Number</th>
+                    <th>Status</th>
                     <th>Available Balance</th>                   
                     <th>Latest Balance</th>                   
                     <th>Actions</th>
@@ -25,6 +26,7 @@
             <tbody>
                 <tr *ngFor="let account of accounts | async">
                     <td>{{account.accountNumber}}</td>
+                    <td>{{account.status}}</td>
                     <td>{{account.availableBalance | number : '.2-2'}}</td>                                                         
                     <td>{{account.latestBalance | number : '.2-2'}}</td>                                                         
                     <td>     
