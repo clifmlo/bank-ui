@@ -25,8 +25,8 @@
             <tbody>
                 <tr *ngFor="let account of accounts | async">
                     <td>{{account.accountNumber}}</td>
-                    <td>{{account.availableBalance}}</td>                                                         
-                    <td>{{account.latestBalance}}</td>                                                         
+                    <td>{{account.availableBalance | number : '.2-2'}}</td>                                                         
+                    <td>{{account.latestBalance | number : '.2-2'}}</td>                                                         
                     <td>     
                         <button (click)="accountDetails(account.accountNumber)" class="btn btn-info" style="margin-left: 10px">Details</button>
                     </td>                    

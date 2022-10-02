@@ -22,23 +22,23 @@
 <hr/>
 <div *ngIf="client">
    <div>
-        <label>Name: </label> {{client.name}}
+       <label><strong>Name: </strong></label> {{client.name}}
     </div>
     <div>
-        <label>Surname: </label> {{client.surname}}
+        <label><strong>Surname: </strong></label> {{client.surname}}
     </div>
     <div>
-        <label>ID Number: </label> {{client.idNumber}}
+        <label><strong>ID Number: </strong></label> {{client.idNumber}}
     </div>
    <div>
-        <label>Contact Number: </label> {{client.contactNumber}}
+        <label><strong>Contact Number: </strong></label> {{client.contactNumber}}
     </div>
     <div>
-        <label>Email: </label> {{client.email}}
+        <label><strong>Email: </strong></label> {{client.email}}
     </div>
     
     <div>
-        <label>Account Status: </label> 
+        <label><strong>Account Status: </strong></label> 
         <span *ngIf="client.active=== true"> Active</span>
         <span *ngIf="client.active === false"> Inactive</span>
     </div>
@@ -55,8 +55,8 @@
                     <th>Account Number</th>
                     <th>Account Type</th>                   
                     <th>Status</th>
-                    <th>Available Balance</th>
-                    <th>Latest Balance</th>
+                    <th>Available Balance (R)</th>
+                    <th>Latest Balance (R)</th>
                 </tr>
             </thead>
             <tbody>
@@ -64,8 +64,8 @@
                     <td>{{account.accountNumber}}</td>
                     <td>{{account.accountType}}</td>                                                         
                     <td>{{account.status}}</td>
-                    <td>{{account.availableBalance}}</td>                                                         
-                    <td>{{account.latestBalance}}</td>                                                       
+                    <td>{{account.availableBalance | number : '.2-2'}}</td>                                                         
+                    <td>{{account.latestBalance | number : '.2-2'}}</td>                                                       
                     <td>                        
                         <button (click)="deposit(account.accountNumber, client.id)" class="btn btn-info" style="margin-left: 10px">Deposit</button> &nbsp;
                         <button (click)="open(content, account.id, account.accountNumber)" class="btn btn-danger" >Delete</button>
