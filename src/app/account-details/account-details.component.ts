@@ -5,6 +5,7 @@ import { BankAccountService } from '../service/bank-account.service';
 import { TransactionService } from '../service/transaction.service';
 import { AccountsComponent } from '../accounts/accounts.component';
 import { Router, ActivatedRoute } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-account-details',
@@ -16,7 +17,8 @@ export class AccountDetailsComponent implements OnInit {
     account: Account;
     transactions: Transaction[];
   
-    constructor(private bankAccountService: BankAccountService, private transactionService: TransactionService, private route: ActivatedRoute, private router: Router) { }
+    constructor(private bankAccountService: BankAccountService, private transactionService: TransactionService, 
+    private route: ActivatedRoute, private router: Router, private datePipe: DatePipe) { }
 
     ngOnInit() {
       this.account = new Account();
@@ -34,8 +36,8 @@ export class AccountDetailsComponent implements OnInit {
   
     getTransactions() {
         this.transactionService.getAccountTransactions(this.accountNumber)
-        .subscribe((data: Transaction[]) => {        
-          this.transactions = data;
+        .subscribe((data: Transaction[]) => {            
+          this.transactions = data;       
         }, error => console.log(error));
     } 
 }

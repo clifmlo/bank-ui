@@ -17,14 +17,15 @@
             <div *ngIf="transferType === 'own'">
                 <div class="form-group">
                     <label for="from">From Account</label>
-                    <select type="text" class="form-control" required [(ngModel)]="transfer.debitAccount" name="from">               
+                    <select  (change)="filterAccounts()" type="text" class="form-control" required [(ngModel)]="transfer.debitAccount" name="from">               
                         <option *ngFor="let account of accounts | async" [ngValue]="account.accountNumber">{{account.accountType + ' | ' + account.accountNumber + ' | R'+ account.availableBalance }}</option>
                     </select>
+                    <span *ngIf="accountSelectionError" style="color: red">Debit account must not be same as credit account</span>
                 </div>
                 <br>
                 <div class="form-group">
                     <label for="to">To Account</label>
-                    <select type="text" class="form-control" required [(ngModel)]="transfer.creditAccount" name="to">               
+                    <select (change)="filterAccounts()" type="text" class="form-control" required [(ngModel)]="transfer.creditAccount" name="to">               
                         <option *ngFor="let account of accounts | async" [ngValue]="account.accountNumber">{{account.accountType + ' | ' +account.accountNumber + ' | R'+ account.availableBalance}}</option>
                     </select>
                 </div>
@@ -46,7 +47,7 @@
             <br>
             <div class="form-group">
                 <label for="amount">Amount (R)</label>
-                <input type="number" class="form-control" id="amount" required [(ngModel)]="transfer.transactionAmount" name="amount">
+                <input type="number" min="1"  class="form-control" id="amount" required [(ngModel)]="transfer.transactionAmount" name="amount">
             </div>
             <br>
             <div class="form-group">
@@ -54,7 +55,7 @@
                 <input type="text" class="form-control"  required [(ngModel)]="transfer.reference" name="reference">
             </div>
             <br>
-            <button type="submit" class="btn btn-success btn-submit">Submit</button>
+            <button [disabled]="!submitButtonActive" type="submit" class="btn btn-success btn-submit">Submit</button>
             <button style="margin-bottom: 10px" type="submit" class="btn btn-dark" (click)="reload()">Back</button>
         </form>
     </div>

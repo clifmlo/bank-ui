@@ -22,6 +22,9 @@ export class TransfersComponent implements OnInit {
    submitError = false;
    successMessage = false;
    errorMessage: string;
+   accountSelectionError = false;
+   submitButtonActive = false;
+   amountEntered = false;
    transfer: Transfer = new Transfer();
    
     constructor(private accountService: BankAccountService, private transactionService: TransactionService, private loginService: LoginService, private route: ActivatedRoute, private router: Router) {}
@@ -39,7 +42,7 @@ export class TransfersComponent implements OnInit {
                 this.successMessage = true
             },
             error => {
-                if (error.error.message.includes("Credit account is inactive")) {
+                if (error.error.message.includes("Credit account is inactive") || error.error.message.includes("Insufficient")) {
                     this.errorMessage = error.error.message;
                 }
                 this.submitError = true,                
@@ -58,5 +61,15 @@ export class TransfersComponent implements OnInit {
 
     closeErrorMessage(){
         this.submitError = false;  
+    }
+    
+    filterAccounts() {
+        if (this.transfer.creditAccount === this.transfer.debitAccount){
+            this.accountSelectionError = true;
+            this.submitButtonActive = false;
+        } else if (this.transfer.creditAccount != null && this.transfer.debitAccount != null && (this.transfer.creditAccount != this.transfer.debitAccount)) {
+            this.submitButtonActive = true;
+            this.accountSelectionError = false;
+        }
     }
 }
