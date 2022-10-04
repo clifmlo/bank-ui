@@ -63,13 +63,16 @@ export class TransfersComponent implements OnInit {
         this.submitError = false;  
     }
     
-    filterAccounts() {
+    validateForms() {
         if (this.transfer.creditAccount === this.transfer.debitAccount){
             this.accountSelectionError = true;
             this.submitButtonActive = false;
-        } else if (this.transfer.creditAccount != null && this.transfer.debitAccount != null && (this.transfer.creditAccount != this.transfer.debitAccount)) {
-            this.submitButtonActive = true;
+        } if (this.transfer.creditAccount != null && this.transfer.debitAccount != null && (this.transfer.creditAccount != this.transfer.debitAccount)) {            
             this.accountSelectionError = false;
+        } if (this.transfer.transactionAmount > 0 && this.transfer.reference != null && this.transfer.reference != '' && this.transfer.creditAccount != null && this.transfer.debitAccount != null && (this.transfer.creditAccount != this.transfer.debitAccount)) {
+            this.submitButtonActive = true; 
+        } else {
+            this.submitButtonActive = false; 
         }
     }
 }

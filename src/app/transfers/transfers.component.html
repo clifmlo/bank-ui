@@ -17,7 +17,7 @@
             <div *ngIf="transferType === 'own'">
                 <div class="form-group">
                     <label for="from">From Account</label>
-                    <select  (change)="filterAccounts()" type="text" class="form-control" required [(ngModel)]="transfer.debitAccount" name="from">               
+                    <select  (change)="validateForms()" type="text" class="form-control" required [(ngModel)]="transfer.debitAccount" name="from">               
                         <option *ngFor="let account of accounts | async" [ngValue]="account.accountNumber">{{account.accountType + ' | ' + account.accountNumber + ' | R'+ account.availableBalance }}</option>
                     </select>
                     <span *ngIf="accountSelectionError" style="color: red">Debit account must not be same as credit account</span>
@@ -25,7 +25,7 @@
                 <br>
                 <div class="form-group">
                     <label for="to">To Account</label>
-                    <select (change)="filterAccounts()" type="text" class="form-control" required [(ngModel)]="transfer.creditAccount" name="to">               
+                    <select (change)="validateForms()" type="text" class="form-control" required [(ngModel)]="transfer.creditAccount" name="to">               
                         <option *ngFor="let account of accounts | async" [ngValue]="account.accountNumber">{{account.accountType + ' | ' +account.accountNumber + ' | R'+ account.availableBalance}}</option>
                     </select>
                 </div>
@@ -41,18 +41,18 @@
                 <br>
                 <div class="form-group">
                     <label for="to">To Account</label>
-                     <input type="text" class="form-control"  required [(ngModel)]="transfer.creditAccount" name="to">        
+                     <input (change)="validateForms()" type="text" class="form-control"  required [(ngModel)]="transfer.creditAccount" name="to">        
                 </div>
             </div>
             <br>
             <div class="form-group">
                 <label for="amount">Amount (R)</label>
-                <input type="number" min="1"  class="form-control" id="amount" required [(ngModel)]="transfer.transactionAmount" name="amount">
+                <input (change)="validateForms()" type="number" min="1"  class="form-control" id="amount" required [(ngModel)]="transfer.transactionAmount" name="amount">
             </div>
             <br>
             <div class="form-group">
                 <label for="reference">Reference</label>
-                <input type="text" class="form-control"  required [(ngModel)]="transfer.reference" name="reference">
+                <input (change)="validateForms()" type="text" class="form-control"  required [(ngModel)]="transfer.reference" name="reference">
             </div>
             <br>
             <button [disabled]="!submitButtonActive" type="submit" class="btn btn-success btn-submit">Submit</button>
