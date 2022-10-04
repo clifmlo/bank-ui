@@ -32,12 +32,12 @@
                 <th>Money In (R)</th>
                 <th>Money Out (R)</th>
                 <th>Status</th>
-                <th>Balance</th>               
+                <th>Balance (R)</th>               
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let transaction of transactions">
-                <td>{{transaction.date_processed | date: 'dd-MM-yyyy' }}</td>
+                <td>{{transaction.date_processed }}</td> <!--| date: 'dd-MM-yyyy' }}</td> -->
                 <td>{{transaction.reference}}</td>
                 <td *ngIf="transaction.transactionType === 'CREDIT'">{{transaction.creditEntry | number : '.2-2'}}</td>
                 <td *ngIf="transaction.transactionType != 'CREDIT'"></td>

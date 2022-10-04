@@ -12,8 +12,7 @@ import { LoginService } from '../service/login.service';
   templateUrl: './transfers.component.html',
   styleUrls: ['./transfers.component.css']
 })
-export class TransfersComponent implements OnInit {
-   
+export class TransfersComponent implements OnInit {   
    transferType: string;
    ownTransfere = false;
    accounts: Observable<Account[]>;

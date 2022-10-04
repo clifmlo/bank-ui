@@ -5,7 +5,6 @@ import { BankAccountService } from '../service/bank-account.service';
 import { TransactionService } from '../service/transaction.service';
 import { AccountsComponent } from '../accounts/accounts.component';
 import { Router, ActivatedRoute } from '@angular/router';
-import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-account-details',
@@ -18,7 +17,7 @@ export class AccountDetailsComponent implements OnInit {
     transactions: Transaction[];
   
     constructor(private bankAccountService: BankAccountService, private transactionService: TransactionService, 
-    private route: ActivatedRoute, private router: Router, private datePipe: DatePipe) { }
+    private route: ActivatedRoute, private router: Router) { }
 
     ngOnInit() {
       this.account = new Account();

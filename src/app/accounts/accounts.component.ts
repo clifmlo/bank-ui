@@ -22,7 +22,7 @@ export class AccountsComponent implements OnInit {
         this.accounts = this.accountService.getAccountsList(this.authUserId);
     }
 
-    accountDetails(accountNumber: string){
+    accountDetails(accountNumber: string){      
       this.router.navigate(['account-details', accountNumber]);
     }
 
