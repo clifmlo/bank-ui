@@ -17,6 +17,7 @@ import { AccountsComponent } from './accounts/accounts.component';
 import { AccountDetailsComponent } from './account-details/account-details.component';
 import { TransfersComponent } from './transfers/transfers.component';
 import { PasswordComponent } from './password/password.component';
+import { BnNgIdleService } from 'bn-ng-idle';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { PasswordComponent } from './password/password.component';
       provide: HTTP_INTERCEPTORS,
       useClass: HttpInterceptorService,
       multi: true
-    }
+    },
+    BnNgIdleService
   ],
   bootstrap: [AppComponent]
 })

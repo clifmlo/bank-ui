@@ -49,7 +49,9 @@ export class LoginService {
   }
   
     redirectUser() {
-        
+        if (this.isUserLoggedIn() == false) {
+            this.router.navigate(['/login']);
+        }
         var userAccount =  this.getLoggedInUser();
         var role = userAccount.roles[0].name;
         if (userAccount.active === false) {

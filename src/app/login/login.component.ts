@@ -27,17 +27,17 @@ export class LoginComponent implements OnInit {
         }
     }
 
-  handleLogin() {
-    this.loginService.authenticate(this.username, this.password).subscribe((user)=> {
-        this.loginService.registerSuccessfulLogin(user);
-        var userAccount =  this.loginService.getLoggedInUser();
-        var role = userAccount.roles[0].name;
-        this.invalidLogin = false;
-        this.loginSuccess = true;
-        this.loginService.redirectUser();                    
-    }, () => {
-      this.invalidLogin = true;
-      this.loginSuccess = false;
-    });      
-  }
+    handleLogin() {
+      this.loginService.authenticate(this.username, this.password).subscribe((user)=> {
+          this.loginService.registerSuccessfulLogin(user);
+          var userAccount =  this.loginService.getLoggedInUser();
+          var role = userAccount.roles[0].name;
+          this.invalidLogin = false;
+          this.loginSuccess = true;
+          this.loginService.redirectUser();                    
+      }, () => {
+        this.invalidLogin = true;
+        this.loginSuccess = false;
+      });      
+    }
 }
