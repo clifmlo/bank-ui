@@ -24,6 +24,8 @@ export class TransfersComponent implements OnInit {
    accountSelectionError = false;
    submitButtonActive = false;
    amountEntered = false;
+   confirm = false;
+   showForm = true;
    transfer: Transfer = new Transfer();
    
     constructor(private accountService: BankAccountService, private transactionService: TransactionService, private loginService: LoginService, private route: ActivatedRoute, private router: Router) {}
@@ -34,8 +36,9 @@ export class TransfersComponent implements OnInit {
         this.accounts = this.accountService.getAccountsList(this.authUserId);        
     }
 
-    onSubmit(){        
-        this.transactionService.transfer(this.transfer).subscribe(
+    submit(transfer: Transfer){ 
+        this.confirm = false;       
+        this.transactionService.transfer(transfer).subscribe(
             data => {
                 this.submitted = true, 
                 this.successMessage = true
@@ -73,5 +76,22 @@ export class TransfersComponent implements OnInit {
         } else {
             this.submitButtonActive = false; 
         }
+    }
+    
+    backToInputForm(){
+        this.resetValues();
+    }
+    
+    resetValues() {
+        this.submitted = false;
+        this.submitError = false;
+        this.successMessage = false;
+        this.confirm = false;
+        this.showForm = true;        
+    }
+    
+    confirmDetails() {
+        this.confirm = true;
+        this.showForm = false; 
     }
 }

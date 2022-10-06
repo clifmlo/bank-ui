@@ -10,10 +10,10 @@
 </div>
 
 <div class="card">
-    <div [hidden]="submitted" style="width: 400px;" class="offset-3">
+    <div [hidden]="!showForm" style="width: 400px;" class="offset-3">
         <br>
         <h3>Make a Transfer</h3>
-        <form (ngSubmit)="onSubmit()">
+        <form>
             <div *ngIf="transferType === 'own'">
                 <div class="form-group">
                     <label for="from">From Account</label>
@@ -55,18 +55,35 @@
                 <input (change)="validateForms()" type="text" class="form-control"  required [(ngModel)]="transfer.reference" name="reference">
             </div>
             <br>
-            <button [disabled]="!submitButtonActive" type="submit" class="btn btn-success btn-submit">Submit</button>
-            <button style="margin-bottom: 10px" type="submit" class="btn btn-dark" (click)="reload()">Back</button>
+            <button [disabled]="!submitButtonActive" (click)="confirmDetails()" type="submit" class="btn btn-success btn-submit">Next</button>
+            <button style="margin-bottom: 10px" type="submit" class="btn btn-dark" (click)=" backToInputForm()">Back</button>
         </form>
     </div>
-
+    <div [hidden]="!confirm" class="centered">
+        <h5>Confirm Details</h5>
+        <div>
+           <label><strong>From Account: </strong></label> {{transfer.debitAccount}}
+        </div>
+        <div>
+           <label><strong>To Account: </strong></label> {{transfer.creditAccount}}
+        </div>
+        <div>
+            <label><strong>Amount: </strong></label> R{{transfer.transactionAmount  | number : '.2-2'}}
+        </div>
+        <div>
+            <label><strong>Reference: </strong></label> {{transfer.reference}}
+        </div>
+        <br>
+        <button (click)="backToInputForm()" class="btn btn-dark">Back</button>
+        <button (click)="submit(transfer)" style="margin-bottom: 10px" type="submit" class="btn btn-success btn-submit">Submit</button>            
+    </div>
     <div [hidden]="!submitted" class="centered">
         <h4>Transaction Details</h4>
-        <div>Payment Amount R: {{transfer.transactionAmount}}</div>
-        <div>From Account: {{transfer.debitAccount}}</div>
-        <div>To Account: {{transfer.creditAccount}}</div>
-        <div>Reference: {{transfer.reference}}</div>
-        <div>Status: Success</div>        
+        <div><strong>Payment Amount: </strong>R{{transfer.transactionAmount | number : '.2-2'}}</div>
+        <div><strong>From Account: </strong>{{transfer.debitAccount}}</div>
+        <div><strong>To Account: </strong>{{transfer.creditAccount}}</div>
+        <div><strong>Reference: </strong>{{transfer.reference}}</div>
+        <div><strong>Status: </strong>Success</div>        
     </div>
     <button [hidden]="!submitted" (click)="reload()" class="btn btn-dark">Finish</button>
 </div>    
