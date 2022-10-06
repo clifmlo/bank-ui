@@ -9,32 +9,48 @@
 </div>
 
 <div class="card">
-    <div [hidden]="submitted" style="width: 400px;" class="offset-3">
+    <div [hidden]="!showForm" style="width: 400px;" class="offset-3">
         <br>
         <h3>Make a Deposit</h3>
-        <form (ngSubmit)="onSubmit()">
+        <form id="form-deposit">
             <h5>Account Number: {{account}}</h5>
             <div class="form-group">
-                <label for="amount">Amount</label>
-                <input type="number" class="form-control" id="number" required [(ngModel)]="deposit.amount" name="amount">
+                <label for="amount">Amount (R)</label>
+                <input type="number" min="1" class="form-control" id="number" required [(ngModel)]="deposit.amount" name="amount">
             </div>
             <br>
             <div class="form-group">
                 <label for="reference">Reference</label>
                 <input type="text" class="form-control" id="reference" required [(ngModel)]="deposit.reference" name="reference">
-            </div> 
-            <br>
-            <button onclick="history.back()" class="btn btn-dark">Back</button>
-            <button style="margin-bottom: 10px" type="submit" class="btn btn-success btn-submit">Submit</button>
+            </div>                                    
         </form>
+        <br>
+        <button onclick="history.back()" class="btn btn-dark">Back</button> 
+        <button (click)="confirmDetails()" style="margin-bottom: 10px" type="submit" class="btn btn-success btn-submit">Next</button>           
+</div> 
+    
+<div [hidden]="!confirm" class="centered">
+    <h5>Confirm Details</h5>
+    <div>
+       <label><strong>Account Number: </strong></label> {{account}}
     </div>
-
-    <div [hidden]="!submitted" class="centered">
+    <div>
+        <label><strong>Amount (R): </strong></label> {{deposit.amount | number : '.2-2'}}
+    </div>
+    <div>
+        <label><strong>Reference: </strong></label> {{deposit.reference}}
+    </div>
+    <br>
+    <button onclick="history.back(-1)" class="btn btn-dark">Back</button>
+    <button (click)="submit(deposit)" style="margin-bottom: 10px" type="submit" class="btn btn-success btn-submit">Submit</button>            
+</div>
+    
+<div [hidden]="!submitted" class="centered">
         <h4>Transaction Details</h4>
         <div>Deposit Amount: {{deposit.amount}}</div>
         <div>Account Number: {{deposit.accountNumber}}</div>
         <div>Reference: {{deposit.reference}}</div>
-        <div>Status: Success</div>
-    </div>
-    <button [hidden]="!submitted" (click)="accountDetails()" class="btn btn-dark">Finish</button>
-</div>    
+        <div>Status: Success</div>        
+ </div>
+<button [hidden]="!submitted" (click)="accountDetails()" class="btn btn-dark">Finish</button> 
+       
