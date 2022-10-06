@@ -17,6 +17,7 @@ export class DepositComponent implements OnInit {
     successMessage = false;
     confirm = false;
     showForm = true;
+    submitButtonActive = false;
 
     constructor(private transactionService: TransactionService, private route: ActivatedRoute, private router: Router) { }
 
@@ -53,5 +54,25 @@ export class DepositComponent implements OnInit {
     confirmDetails() {
         this.confirm = true;
         this.showForm = false;
+    }
+    
+    validateForms() {
+        if (this.deposit.amount > 0 && this.deposit.reference != null && this.deposit.reference != '') { 
+            this.submitButtonActive = true;
+        } else {
+            this.submitButtonActive = false;
+        }
+    }
+    
+    backToInputForm(){
+        this.resetValues();
+    }
+    
+    resetValues() {
+        this.submitted = false;
+        this.submitError = false;
+        this.successMessage = false;
+        this.confirm = false;
+        this.showForm = true;        
     }
 }
