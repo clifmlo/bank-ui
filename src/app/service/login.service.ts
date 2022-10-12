@@ -11,6 +11,7 @@ export class LoginService {
   private baseUrl = 'http://localhost:8080/api/v1/';
   authenticatedUser: Object;
   USER = 'authenticated_user';
+  BASIC_AUTH = 'basic_auth';
 
   public username: string;
   public password: string;
@@ -26,12 +27,14 @@ export class LoginService {
     return this.http.post(`${this.baseUrl}auth/user/signin`, null);
   }
 
-  registerSuccessfulLogin(authenticatedUser: Object) {
-    sessionStorage.setItem(this.USER, JSON.stringify(authenticatedUser))
+  registerSuccessfulLogin(authenticatedUser: Object, basicAuth: string) {
+    sessionStorage.setItem(this.USER, JSON.stringify(authenticatedUser));
+    sessionStorage.setItem(this.BASIC_AUTH, basicAuth);
   }
 
   logout() {
     sessionStorage.removeItem(this.USER);
+    sessionStorage.removeItem(this.BASIC_AUTH);
     this.username = null;
     this.password = null;
   }
