@@ -10,10 +10,8 @@ export class HttpInterceptorService implements HttpInterceptor {
     constructor(private loginService: LoginService) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {  
-        console.log("request intercepted");
-                
         if(this.loginService.isUserLoggedIn()) {
-            this.basicAuth = 'Basic ' + window.btoa(this.loginService.username + ":" + this.loginService.password); //sessionStorage.getItem('basicauth');
+            this.basicAuth = sessionStorage.getItem('basic_auth');
         } else if (!this.loginService.isUserLoggedIn()) { 
             this.basicAuth = 'Basic ' + window.btoa(this.loginService.username + ":" + this.loginService.password);         
         }    
