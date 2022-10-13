@@ -20,11 +20,11 @@ export class ClientListComponent implements OnInit {
     constructor(private clientService: ClientService, private router: Router, private modalService: NgbModal) {}
 
     ngOnInit() {
-      this.reloadData();
+      this.loadData();
     }
 
-    reloadData() {
-      this.clients = this.clientService.getClientsList();
+    loadData() {
+       this.clients = this.clientService.getClientsList();
     }
 
     deleteClient(id: number) {

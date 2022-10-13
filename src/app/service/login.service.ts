@@ -50,6 +50,10 @@ export class LoginService {
     if (user === null) return ''
     return user
   }
+
+  getLoggedInRole() {
+    return this.getLoggedInUser().roles[0].name;    
+  }
   
     redirectUser() {
         if (this.isUserLoggedIn() == false) {
@@ -58,7 +62,7 @@ export class LoginService {
         var userAccount =  this.getLoggedInUser();
         var role = userAccount.roles[0].name;
         if (userAccount.active === false) {
-            this.router.navigate(['/password/change']);
+            this.router.navigate(['/password/change'], { skipLocationChange: true });
         } else if (role === "ADMIN") {            
             window.location.href="/clients"
         } else if (role === "USER") {            
