@@ -44,7 +44,7 @@ export class TransfersComponent implements OnInit {
                 this.successMessage = true
             },
             error => {
-                if (error.error.message.includes("Credit account is inactive") || error.error.message.includes("Insufficient")) {
+                if (error.error.message.includes("Account is inactive") || error.error.message.includes("Insufficient")) {
                     this.errorMessage = error.error.message;
                 }
                 this.submitError = true,                

@@ -28,12 +28,16 @@ export class CreateBankAccountComponent implements OnInit {
     this.bankAccount = new CreateBankAccount();
   }
 
-    save() {      
+    save(id) {      
         this.bankAccountService.createBankAccount(this.bankAccount)
         .subscribe(
             data => {
-               console.log(data),
+                 console.log(this.id);                 
                this.submitted = true
+               setTimeout(function(){
+                    window.location.href="client/details/"+ id;
+                },1000);
+              
             }, 
             error => {
                 console.log(error),
@@ -46,7 +50,7 @@ export class CreateBankAccountComponent implements OnInit {
     onSubmit() {  
       this.submitError = false;         
       this.setValues();
-      this.save();     
+      this.save(this.bankAccount.userId);     
     }
 
     setValues() {

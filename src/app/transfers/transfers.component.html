@@ -4,12 +4,14 @@
 </div>
    
 <div [hidden]="!submitError"  class="alert alert-danger alert-dismissible text-center">
-  <span (click)="closeErrorMessage()" class="close span-alert-box" data-dismiss="alert" aria-label="close">&times;</span>  
-  <span *ngIf="errorMessage"><strong>Error! {{errorMessage}}</strong></span>
-  <span *ngIf="!errorMessage"><strong>Error occurred during submission!</strong></span>
+    <span (click)="closeErrorMessage()" class="close span-alert-box" data-dismiss="alert" aria-label="close">&times;</span>  
+    <span *ngIf="errorMessage"><strong>Error! {{errorMessage}}</strong></span>
+    <span *ngIf="!errorMessage"><strong>Error occurred during submission!</strong></span>
+    
 </div>
+<button [hidden]="!submitError" style="margin-bottom: 10px" type="submit" class="btn btn-primary" (click)="backToInputForm()" >Edit Transaction Details</button>
 
-<div class="card">
+<div [hidden]="submitError" class="card">
     <div [hidden]="!showForm" style="width: 400px;" class="offset-3">
         <br>
         <h3>Make a Transfer</h3>
@@ -56,7 +58,7 @@
             </div>
             <br>
             <button [disabled]="!submitButtonActive" (click)="confirmDetails()" type="submit" class="btn btn-success btn-submit">Next</button>
-            <button style="margin-bottom: 10px" type="submit" class="btn btn-dark" (click)=" backToInputForm()">Back</button>
+            <button style="margin-bottom: 10px" type="submit" class="btn btn-dark" onclick="history.back()">Back</button>
         </form>
     </div>
     <div [hidden]="!confirm" class="centered">
