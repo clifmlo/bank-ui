@@ -35,7 +35,7 @@ export class PasswordComponent implements OnInit {
                 this.loginService.logout();
                 setTimeout(function(){
                     window.location.href ="/login";
-                },1000);                 
+                },12000);                 
             },
             error => {
             console.log(error),

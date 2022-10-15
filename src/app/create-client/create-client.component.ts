@@ -31,7 +31,11 @@ export class CreateClientComponent implements OnInit {
     save() {
         this.clientService.createClient(this.client).subscribe(
             data => {
-                this.submitted = true;            
+                this.submitted = true; 
+                setTimeout(function(){
+                    location.href= 'clients'; 
+                },1000);   
+                          
             }, 
             error => {
                 console.log(error),
@@ -66,5 +70,5 @@ export class CreateClientComponent implements OnInit {
 
     closeErrorMessage(){
         this.submitError = false;  
-    }
+    }   
 }
