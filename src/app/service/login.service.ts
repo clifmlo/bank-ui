@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHandler, HttpHeaders } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -23,8 +23,8 @@ export class LoginService {
   authenticate(username: string, password: string) :Observable<Object> { 
     this.username = username;
     this.password = password;
-  
-    return this.http.post(`${this.baseUrl}auth/user/signin`, null);
+    
+    return this.http.get(`${this.baseUrl}auth/user/signin`);
   }
 
   registerSuccessfulLogin(authenticatedUser: Object, basicAuth: string) {
