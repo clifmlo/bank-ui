@@ -9,5 +9,5 @@ export class Transaction {
     transactionStatus: string;
     transactionType: string;
     reference: string;
-    date_processed: Date;
+    date_processed: string;
 }

@@ -18,6 +18,7 @@ import { AccountDetailsComponent } from './account-details/account-details.compo
 import { TransfersComponent } from './transfers/transfers.component';
 import { PasswordComponent } from './password/password.component';
 import { BnNgIdleService } from 'bn-ng-idle';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { BnNgIdleService } from 'bn-ng-idle';
     HttpClientModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModule
   ],
   providers: [
     {

@@ -35,8 +35,8 @@ export class AccountDetailsComponent implements OnInit {
   
     getTransactions() {
         this.transactionService.getAccountTransactions(this.accountNumber)
-        .subscribe((data: Transaction[]) => {            
+        .subscribe((data: Transaction[]) => {                      
           this.transactions = data;       
         }, error => console.log(error));
-    } 
+    }
 }
