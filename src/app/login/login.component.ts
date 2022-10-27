@@ -28,9 +28,8 @@ export class LoginComponent implements OnInit {
     }
 
     handleLogin() {
-      this.loginService.authenticate(this.username, this.password).subscribe((user)=> {
-          let authString = 'Basic ' + btoa(this.username + ':' + this.password);
-          this.loginService.registerSuccessfulLogin(user, authString);
+          this.loginService.authenticate(this.username, this.password).subscribe((response)=> {                    
+          this.loginService.registerSuccessfulLogin(response);
           var userAccount =  this.loginService.getLoggedInUser();
           var role = userAccount.roles[0].name;
           this.invalidLogin = false;

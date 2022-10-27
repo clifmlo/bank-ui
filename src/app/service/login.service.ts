@@ -12,6 +12,7 @@ export class LoginService {
   authenticatedUser: Object;
   USER = 'authenticated_user';
   BASIC_AUTH = 'basic_auth';
+  TOKEN = 'token';
 
   public username: string;
   public password: string;
@@ -27,14 +28,16 @@ export class LoginService {
     return this.http.get(`${this.baseUrl}auth/user/signin`);
   }
 
-  registerSuccessfulLogin(authenticatedUser: Object, basicAuth: string) {
-    sessionStorage.setItem(this.USER, JSON.stringify(authenticatedUser));
-    sessionStorage.setItem(this.BASIC_AUTH, basicAuth);
+  registerSuccessfulLogin(response: Object) {
+        var user = response['user'];
+        var token = response['token'];
+        sessionStorage.setItem(this.USER, JSON.stringify(user));
+        sessionStorage.setItem(this.TOKEN, token);
   }
 
   logout() {
     sessionStorage.removeItem(this.USER);
-    sessionStorage.removeItem(this.BASIC_AUTH);
+    sessionStorage.removeItem(this.TOKEN);
     this.username = null;
     this.password = null;
   }
